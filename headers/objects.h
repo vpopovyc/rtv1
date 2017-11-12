@@ -14,9 +14,9 @@
 #ifndef __OBJECTS_H
 # define __OBJECTS_H
 
-# include "vector_types.h"
+# include "core.h"
 
-# define OBJNUM	2
+# define OBJNUM	(2)
 
 typedef	enum	e_obj_type
 {
@@ -26,8 +26,7 @@ typedef	enum	e_obj_type
 
 typedef	struct	s_object
 {
-	t_double3	pos;
-	t_double3	lcs;
+	t_cs		lcs;
 	t_obj_type	type;
 }				t_object;
 

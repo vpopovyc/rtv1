@@ -10,55 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "headers/vector_types.h"
+#include "headers/utils.h"
 #include <stdio.h>
-#include <math.h>
-							
-#define vec_print(s, x) (printf("%s x: %f y: %f z: %f\n", s, (x)[0], (x)[1], (x)[2]))
-
-/*
-** Abs for t_double3 (vector of 3 'double' values)
-*/
-
-static	inline	t_double3	vabs(t_double3 x)
-{
-	x[0] = x[0] < 0.0 ? -x[0] : x[0];
-	x[1] = x[1] < 0.0 ? -x[1] : x[1];
-	x[2] = x[2] < 0.0 ? -x[2] : x[2];
-	return (x);
-}
-
-/*
-** C99 has macros for the classification of floating-point numbers:
-** fpclassify(x) returns one of:
-** ** FP_NAN: 		x == nan
-** ** FP_INFINITE: 	x == +inf || x == -inf
-** ** FP_ZERO: 		x == 0.0
-** ** FP_NORMAL: 	x == ok
-*/
-
-static	inline	t_double3	np(t_double3 x)
-{
-	fpclassify(x[0]) != FP_NORMAL ? x[0] = 0.0 : 0;
-	fpclassify(x[1]) != FP_NORMAL ? x[1] = 0.0 : 0;
-	fpclassify(x[2]) != FP_NORMAL ? x[2] = 0.0 : 0;
-	return (x);
-}
-
-/*
-** Cross Product
-** (ax, ay, az) x (bx, by, bz)
-** cx = (ay * bz - az * by)
-** cy = (az * bx - ax * bz)
-** cz = (ax * by - ay * bx)
-*/
-
-static	inline	t_double3	cross(t_double3 a, t_double3 b)
-{
-	return ((t_double3){ a[1] * b[2] - a[2] * b[1],
-						 a[2] * b[0] - a[0] * b[2],
-						 a[0] * b[1] - a[1] * b[0]});
-}
 
 int		main(void)
 {
@@ -83,5 +36,12 @@ int		main(void)
 	vec_print("dir:", dir);
 	vec_print("right:", right);
 	vec_print("up:", up);
+
+	t_double3 n = (t_double3){1.0, 0.0, 1.0};
+
+	t_double3 newz = qrot((t_double4){0.0, 0.0, 1.0, 0.0}, quat(n, 180.0));
+
+	vec_print("newz:", newz);
+
 	return (0);
 }

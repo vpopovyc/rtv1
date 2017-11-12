@@ -22,7 +22,7 @@ OBJ = $(SRC:.c=.o)
 # HEADER = 
 
 CC = clang
-CCFLAGS = -Wall -Wextra -Werror
+CCFLAGS = -Wall -Wextra -Werror -Winline
 
 # FRAMEWORKS = -F ~/Library/Frameworks -framework SDL2
 
