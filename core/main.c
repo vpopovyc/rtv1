@@ -12,13 +12,7 @@
 
 #include "../headers/core.h"
 
-int		main(/*int ac, char **av*/)
+int		main(void)
 {
-	// if (ac == 2)
-	// {
-	// 	if (av[1] != NULL)
-	// 	{
-	// 		parse_init(/*av[1]*/);
-	// 	}
-	// }
+	setup();
 }

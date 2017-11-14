@@ -14,6 +14,7 @@ EXEC = rtv1
 
 CORE = core/main.c
 PARSE = parse/parse_init.c
+SDL2 = sdl2/init.c
 
 SRC += $(CORE) $(PARSE)
 

@@ -14,5 +14,5 @@
 
 void	setup(void)
 {
-	
+	init_sdl();
 }

@@ -16,6 +16,13 @@
 # include "../libft/libft.h"
 // # include "../headers/parse.h"
 # include "vector_types.h"
+# include "sdl2.h"
+
+typedef	enum	e_globals
+{
+	wh = 600,
+	ww = 800
+}				t_globals;
 
 /*
 ** Coordinate system

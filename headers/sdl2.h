@@ -1,23 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   objects.c                                          :+:      :+:    :+:   */
+/*   sdl2.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpopovyc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/01 21:20:24 by vpopovyc          #+#    #+#             */
-/*   Updated: 2017/11/01 21:20:26 by vpopovyc         ###   ########.fr       */
+/*   Created: 2017/11/14 20:18:29 by vpopovyc          #+#    #+#             */
+/*   Updated: 2017/11/14 20:18:31 by vpopovyc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "headers/objects.h"
+#ifndef __SDL2_H
+# define __SDL2_H
+
+# include <SDL2/SDL.h>
 
 /*
-** TBD
+** Struct to keep all needed data together
 */
 
-t_object	g_obj[OBJNUM] =
+typedef	struct		s_sdl2
 {
-	{{10.0, 10.0, 10.0}, {}},
-	{{0.0, }}
-}
+	SDL_Window		*window;
+	SDL_Renderer	*renderer;
+	SDL_Texture		*texture;
+	SDL_Event		event;
+	uint32_t		*pixels;
+}					t_sdl2;
+
+/*
+** Function that initializes global sdl2 struct
+*/
+
+void				init_sdl(void);
+
+/*
+** Global access point to graphic struct
+*/
+
+extern	t_sdl2		g_sdl2;
+
+#endif
