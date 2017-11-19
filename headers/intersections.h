@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   intersections.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpopovyc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/01 19:57:08 by vpopovyc          #+#    #+#             */
-/*   Updated: 2017/11/01 19:57:10 by vpopovyc         ###   ########.fr       */
+/*   Created: 2017/11/19 19:07:17 by vpopovyc          #+#    #+#             */
+/*   Updated: 2017/11/19 19:07:18 by vpopovyc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/core.h"
+#ifndef __INTERSECTIONS_H
+# define __INTERSECTIONS_H
 
-int		main(void)
-{
-	setup();
-	// while (1)
-	// {
-		pic_render();
-		handle_command();
-	// }
-	return (0);
-}
+// # ifndef __RAY_PRE_DEF
+
+typedef	t_double3	t_ray;
+
+// # endif
+
+int		sphere_inter(t_ray ray, struct s_object self);
+
+#endif

@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   handle_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpopovyc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/01 19:57:08 by vpopovyc          #+#    #+#             */
-/*   Updated: 2017/11/01 19:57:10 by vpopovyc         ###   ########.fr       */
+/*   Created: 2017/11/19 20:31:45 by vpopovyc          #+#    #+#             */
+/*   Updated: 2017/11/19 20:31:47 by vpopovyc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/core.h"
 
-int		main(void)
+void	handle_command(void)
 {
-	setup();
-	// while (1)
-	// {
-		pic_render();
-		handle_command();
-	// }
-	return (0);
+	uint8_t 	*keystate;
+
+	while (1)
+	{	
+		keystate = (unsigned char *)SDL_GetKeyboardState(NULL);
+		SDL_PollEvent(&g_sdl.event);
+	    if ((g_sdl.event.type == SDL_QUIT) || keystate[SDL_SCANCODE_ESCAPE])
+	        exit(0);
+	}
 }

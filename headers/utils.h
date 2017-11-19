@@ -19,12 +19,13 @@
 ** utils/vector.c
 */
 
-# define vec_print(s, x) (printf("%s x: %.12f y: %.12f z: %.12f\n", s, (x)[0], (x)[1], (x)[2]))
+# define vec_print(s, x) (printf("%s x: %.16f y: %.16f z: %.16f\n", s, (x)[0], (x)[1], (x)[2]))
 
 extern	t_double3	cross(t_double3 a, t_double3 b)	__attribute__((always_inline));
 extern	t_double3	vabs(t_double3 x) __attribute__((always_inline));
-extern 	t_double3	np(t_double3 x) __attribute__((always_inline));
+extern 	double		dot(t_double3 x1, t_double3 x2) __attribute__((always_inline));
 extern 	t_double3	vec(t_double4 x) __attribute__((always_inline));
+extern	t_double3	norm(t_double3 x) __attribute__((always_inline));
 
 /*
 ** utils/quaternion.c

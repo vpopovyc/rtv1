@@ -12,11 +12,14 @@
 
 EXEC = rtv1
 
-CORE = core/main.c
+CORE = core/main.c core/setup.c core/handle_command.c core/intersections.c \
+		core/pic_render.c
 PARSE = parse/parse_init.c
+UTILS = utils/vector.c utils/quaternion.c
 SDL2 = sdl2/init.c
+GLOBALS = globals/globals.c globals/objects.c
 
-SRC += $(CORE) $(PARSE)
+SRC += $(CORE) $(PARSE) $(UTILS) $(SDL2) $(GLOBALS)
 
 OBJ = $(SRC:.c=.o)
 
@@ -25,9 +28,9 @@ OBJ = $(SRC:.c=.o)
 CC = clang
 CCFLAGS = -Wall -Wextra -Werror -Winline
 
-# FRAMEWORKS = -F ~/Library/Frameworks -framework SDL2
+FRAMEWORKS = -F /Library/Frameworks -framework SDL2
 
-# SDLHEADER = -F ~/Library/Frameworks -I ~/Library/Frameworks/SDL2.framework/Headers/ 
+SDLHEADER = -F /Library/Frameworks -I /Library/Frameworks/SDL2.framework/Headers/ 
 
 LIBFT = libft/libft.a
 
@@ -36,15 +39,15 @@ LIBS += $(LIBFT)
 all: $(EXEC)
 
 $(EXEC): $(LIBS) $(OBJ)
-	$(CC) $(CCFLAGS) $(LIBS) $(OBJ) -o $(EXEC)
-#	$(CC) $(CCFLAGS) $(FRAMEWORKS) $(SDLHEADER) $(LIBS) $(OBJ) -o $(EXEC)
+	# $(CC) $(CCFLAGS) $(LIBS) $(OBJ) -o $(EXEC)
+	$(CC) $(CCFLAGS) $(FRAMEWORKS) $(SDLHEADER) $(LIBS) $(OBJ) -o $(EXEC)
 
 $(LIBFT):
 	make -C libft/ all
 
 %.o: %.c
-	$(CC) -g $(CCFLAGS) -o $@ -c $<
-	# $(CC) -g $(CCFLAGS) $(SDLHEADER) -o $@ -c $<
+	# $(CC) -g $(CCFLAGS) -o $@ -c $<
+	$(CC) -g $(CCFLAGS) $(SDLHEADER) -o $@ -c $<
 
 clean:
 	rm -rf $(OBJ)

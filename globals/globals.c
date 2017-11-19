@@ -23,13 +23,10 @@ t_sdl2	g_sdl;
 ** eye object
 */
 
-t_eye g_eye = (t_eye)
-{
-	.lcs = (t_cs)
-	{
-		.ox = 2.0,
-		.oy = 1.0,
-		.oz = 3.0,
-		.bv = (t_double3){10.0, 10.0, 10.0}
-	}
-};
+t_eye	g_eye;
+
+/*
+** prime rays
+*/
+
+t_ray	g_rays[ww * wh];

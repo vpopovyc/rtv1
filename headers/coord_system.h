@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   coord_system.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpopovyc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/01 19:57:08 by vpopovyc          #+#    #+#             */
-/*   Updated: 2017/11/01 19:57:10 by vpopovyc         ###   ########.fr       */
+/*   Created: 2017/11/19 20:49:11 by vpopovyc          #+#    #+#             */
+/*   Updated: 2017/11/19 20:49:13 by vpopovyc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/core.h"
+#ifndef __COOR_SYSTEM_H
+# define __COOR_SYSTEM_H
 
-int		main(void)
+/*
+** Coordinate system
+** ** origin point
+** ** bv – 3 basis vectors: u - dir, v - up, n - right
+*/
+
+typedef	struct	s_cs
 {
-	setup();
-	// while (1)
-	// {
-		pic_render();
-		handle_command();
-	// }
-	return (0);
-}
+	t_double3	o;
+	t_double3	u;
+	t_double3	v;
+	t_double3	n;
+}				t_cs;
+
+#endif

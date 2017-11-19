@@ -1,0 +1,3 @@
+{
+	"shell_cmd": "bash; cd ~/workspace/rtv1;clang test.c utils/*.c -framework SDL2"
+}

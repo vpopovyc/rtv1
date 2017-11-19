@@ -16,10 +16,11 @@
 ** Function that initializes global sdl2 struct
 */
 
-void	init_sdl(void)
+void	init_sdl(const char *name)
 {
+    // (void)name;
 	SDL_Init(SDL_INIT_VIDEO);
-    g_sdl.window = SDL_CreateWindow("rtv1", SDL_WINDOWPOS_UNDEFINED,
+    g_sdl.window = SDL_CreateWindow(name, SDL_WINDOWPOS_UNDEFINED,
                                             SDL_WINDOWPOS_UNDEFINED,
                                             ww,
                                             wh,

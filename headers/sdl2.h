@@ -32,12 +32,12 @@ typedef	struct		s_sdl2
 ** Function that initializes global sdl2 struct
 */
 
-void				init_sdl(void);
+void				init_sdl(const char *name);
 
 /*
 ** Global access point to graphic struct
 */
 
-extern	t_sdl2		g_sdl2;
+extern	t_sdl2		g_sdl;
 
 #endif

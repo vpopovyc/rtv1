@@ -49,18 +49,25 @@ inline	t_double3	vabs(t_double3 x)
 }
 
 /*
-** C99 has macros for the classification of floating-point numbers:
-** fpclassify(x) returns one of:
-** ** FP_NAN: 		x == nan
-** ** FP_INFINITE: 	x == +inf || x == -inf
-** ** FP_ZERO: 		x == 0.0
-** ** FP_NORMAL: 	x == ok
+** Normalization of vector
 */
 
-inline	t_double3	np(t_double3 x)
+inline	t_double3	norm(t_double3 x)
 {
-	(fpclassify(x[0]) != FP_NORMAL || x[0] == -0.0) ? x[0] = 0.0 : 0;
-	(fpclassify(x[1]) != FP_NORMAL || x[1] == -0.0) ? x[1] = 0.0 : 0;
-	(fpclassify(x[2]) != FP_NORMAL || x[2] == -0.0) ? x[2] = 0.0 : 0;
-	return (x);
+	double		l;
+	t_double3	x2;
+
+	x2 = x * x;
+	l = sqrt(x2[0] + x2[1] + x2[2]);
+	return (x / ((t_double3){l, l, l}));
+}
+
+/*
+** Dot product of two vectors
+*/
+
+inline	double	dot(t_double3 x1, t_double3 x2)
+{
+	x1 *= x2;
+	return (x1[0] + x1[1] + x1[2]);
 }

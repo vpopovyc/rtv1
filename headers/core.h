@@ -16,27 +16,17 @@
 # include "../libft/libft.h"
 // # include "../headers/parse.h"
 # include "vector_types.h"
+# include "coord_system.h"
+# include "utils.h"
 # include "sdl2.h"
+# include "objects.h"
+# include "intersections.h"
 
 typedef	enum	e_globals
 {
 	wh = 600,
-	ww = 800
+	ww = 600
 }				t_globals;
-
-/*
-** Coordinate system
-** ** origin point
-** ** bv – 3 basis vectors: dir, up, right
-*/
-
-typedef	struct	s_cs
-{
-	double		ox;
-	double		oy;
-	double		oz;
-	t_double3	bv;
-}				t_cs;
 
 /*
 ** Eye object
@@ -46,5 +36,33 @@ typedef	struct	s_eye
 {
 	t_cs		lcs;
 }				t_eye;
+
+extern	t_eye	g_eye;
+
+/*
+** Ray object
+*/
+
+typedef	t_double3	t_ray;
+
+extern	t_ray		g_rays[];
+
+/*
+** Set up a shit
+*/
+
+void			setup(void);
+
+/*
+** Render a shit
+*/
+
+void			pic_render(void);
+
+/*
+** User input
+*/
+
+void			handle_command(void);
 
 #endif
