@@ -35,6 +35,12 @@ typedef	struct		s_sdl2
 void				init_sdl(const char *name);
 
 /*
+** base putpixel
+*/
+
+extern void			set_pixel(int color, int x, int y) __attribute__((always_inline));
+
+/*
 ** Global access point to graphic struct
 */
 

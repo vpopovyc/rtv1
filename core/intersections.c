@@ -12,40 +12,33 @@
 
 #include "../headers/core.h"
 
-int		sphere_inter_solution(double t1, double t2)
+static inline double	sphere_inter_solution(double t1, double t2)
 {
-	double	t;
-
-	t = -1.0;
-	if (t1 > 0.0)
-		t = t1;
-	else
-	{
-		if (t2 > 0.0)
-			t = t2;
-	}
-	return (t);
+	if (t1 > 0.0001)
+		return (t1);
+	if (t2 > 0.0001)
+		return (t2);
+	return (-1.0);
 }
 
-int		sphere_inter(t_ray ray, t_object sphere)
+double					sphere_inter(t_ray ray, t_double3 ray_o, t_object *sphere)
 {
-	double	a;
-	double	b;
-	double	c;
-	double	disc;
-	double	nsqrtdisc;
-	t_ray	sray;
+	double		a;
+	double		b;
+	double		c;
+	t_double2	d;
+	t_ray		sray;
 
-	sray = g_eye.lcs.o - sphere.lcs.o;
+	sray = ray_o - sphere->lcs.o;
 	a = dot(ray, ray);
-	b = 2 * dot(ray, sray);
-	c = dot(sray, sray) - (sphere.prop.radius * sphere.prop.radius);
-	nsqrtdisc = b * b - 4 * a * c;
-	if (nsqrtdisc < 0)
-		return (-1);
+	b = 2.0 * dot(ray, sray);
+	c = dot(sray, sray) - (sphere->prop.radius * sphere->prop.radius);
+	d[0] = b * b - 4.0 * a * c;
+	if (d[0] < 0.0)
+		return (-1.0);
 	else
 	{
-		disc = sqrt(nsqrtdisc);
-		return (sphere_inter_solution((-b + disc) / 2 * a, (-b - disc) / 2.0 * a));
+		d[1] = sqrt(d[0]);
+		return (sphere_inter_solution((-b + d[1]) / 2.0 * a, (-b - d[1]) / 2.0 * a));
 	}
 }

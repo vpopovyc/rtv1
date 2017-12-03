@@ -30,3 +30,47 @@ t_eye	g_eye;
 */
 
 t_ray	g_rays[ww * wh];
+
+/*
+** Light sources
+*/
+
+t_light	g_light[LNUM] = 
+{
+	{
+		.lcs = {
+			.o = (t_double3){0.0, 800.0, 0.0},
+			.u = (t_double3){1.0, 0.0, 0.0},
+			.v = (t_double3){0.0, 1.0, 0.0},
+			.n = (t_double3){0.0, 0.0, 1.0}
+		},
+		.color = {
+			.rgba = 0xa2e20200
+		},
+		.intensity = (t_double3){1.0, 1.0, 1.0}
+	},
+	{
+		.lcs = {
+			.o = (t_double3){0.0, 0.0, 800.0},
+			.u = (t_double3){1.0, 0.0, 0.0},
+			.v = (t_double3){0.0, 1.0, 0.0},
+			.n = (t_double3){0.0, 0.0, 1.0}
+		},
+		.color = {
+			.rgba = 0x82020200
+		},
+		.intensity = (t_double3){1.0, 1.0, 1.0}
+	},
+	{
+		.lcs = {
+			.o = (t_double3){0.0, 0.0, -800.0},
+			.u = (t_double3){1.0, 0.0, 0.0},
+			.v = (t_double3){0.0, 1.0, 0.0},
+			.n = (t_double3){0.0, 0.0, 1.0}
+		},
+		.color = {
+			.rgba = 0x82020200
+		},
+		.intensity = (t_double3){1.0, 1.0, 1.0}
+	}
+};

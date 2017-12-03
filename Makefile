@@ -13,10 +13,10 @@
 EXEC = rtv1
 
 CORE = core/main.c core/setup.c core/handle_command.c core/intersections.c \
-		core/pic_render.c
+		core/pic_render.c core/normals.c core/phong.c core/trace.c
 PARSE = parse/parse_init.c
-UTILS = utils/vector.c utils/quaternion.c
-SDL2 = sdl2/init.c
+UTILS = utils/vector.c utils/quaternion.c utils/color.c
+SDL2 = sdl2/init.c sdl2/set_pixel.c
 GLOBALS = globals/globals.c globals/objects.c
 
 SRC += $(CORE) $(PARSE) $(UTILS) $(SDL2) $(GLOBALS)
@@ -26,7 +26,7 @@ OBJ = $(SRC:.c=.o)
 # HEADER = 
 
 CC = clang
-CCFLAGS = -Wall -Wextra -Werror -Winline
+CCFLAGS = -Wall -Wextra -Werror -Winline -Rpass -Rpass-missed -Rpass-analysis
 
 FRAMEWORKS = -F /Library/Frameworks -framework SDL2
 

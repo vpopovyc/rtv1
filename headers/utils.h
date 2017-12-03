@@ -24,8 +24,10 @@
 extern	t_double3	cross(t_double3 a, t_double3 b)	__attribute__((always_inline));
 extern	t_double3	vabs(t_double3 x) __attribute__((always_inline));
 extern 	double		dot(t_double3 x1, t_double3 x2) __attribute__((always_inline));
+extern	t_double3	dot3(t_double3 x1, t_double3 x2) __attribute__((always_inline));
 extern 	t_double3	vec(t_double4 x) __attribute__((always_inline));
 extern	t_double3	norm(t_double3 x) __attribute__((always_inline));
+extern	t_double3	point(t_double3 p, t_double3 v, double t) __attribute__((always_inline));
 
 /*
 ** utils/quaternion.c
@@ -44,5 +46,13 @@ extern	double		qnorm(t_double4 x) __attribute__((always_inline));
 extern	t_double4	qnp(t_double4 x) __attribute__((always_inline));
 extern	double		qround(double x);
 
+/*
+** utils/color.c
+*/
 
+typedef struct s_color t_color;
+
+extern void			setup_color(void);
+extern void			update_unit(t_color *color);
+extern void			update_raw(t_color *color);
 #endif

@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   normals.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpopovyc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/01 19:57:08 by vpopovyc          #+#    #+#             */
-/*   Updated: 2017/11/01 19:57:10 by vpopovyc         ###   ########.fr       */
+/*   Created: 2017/11/26 17:32:20 by vpopovyc          #+#    #+#             */
+/*   Updated: 2017/11/26 17:32:21 by vpopovyc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/core.h"
+#ifndef __NORMALS_H
+# define __NORMALS_H
 
-int		main(void)
-{
-	setup();
-	pic_render();
-	handle_command();
-	return (0);
-}
+t_ray	sphere_normal(t_double3 point, t_object *sphere);
+
+#endif

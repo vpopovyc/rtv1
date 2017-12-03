@@ -12,67 +12,75 @@
 
 #include "../headers/core.h"
 
-/*
-** TEMP
-*/
+pthread_t			g_treads[thread_num];
+pthread_cond_t		g_work_done;
+pthread_mutex_t		g_general_mutex = PTHREAD_MUTEX_INITIALIZER;
+int					g_work_amount = 0;
 
-void	temp_put_pixel(int color, int x, int y)
+static inline void	update_picture(void)
 {
-	g_sdl.pixels[y * wh + x] = color;
-}
-
-/*
-** TEMP
-*/
-
-int 	check_each_object_for_intersection(const int x, const int y)
-{
-	int		obj_id;
-	int		t;
-	int		t_min;
-	int		closest_obj;
-
-	t_min = -1;
-	closest_obj = -1;
-	obj_id = 0;
-	while (obj_id < OBJNUM)
-	{
-		t = g_obj[obj_id].intersect_me(g_rays[y * wh + x], g_obj[obj_id]);
-		if ((t < t_min || t_min == -1) && t != -1)
-		{
-			t_min = t;
-			closest_obj = obj_id;
-		}
-		++obj_id;
-	}
-	if (closest_obj == -1)
-		return (0xffffff00);
-	else
-		return (g_obj[closest_obj].prop.color);
-}
-
-void	render_in_range(int x_min, int x_max, int y_min, int y_max)
-{
-	int	color;
-
-	while (y_min < y_max)
-	{
-		x_min = 0;
-		while (x_min < x_max)
-		{
-			color = check_each_object_for_intersection(x_min, y_min);
-			temp_put_pixel(color, x_min, y_min);
-			++x_min;
-		}
-		++y_min;
-	}
-}
-
-void	pic_render(void)
-{
-	render_in_range(0, ww, 0, wh);
-	SDL_UpdateTexture(g_sdl.texture, NULL, g_sdl.pixels, ww * sizeof(int));
-    SDL_RenderClear(g_sdl.renderer);
+	SDL_UpdateTexture(g_sdl.texture, NULL, g_sdl.pixels, ww * sizeof(int32_t));
     SDL_RenderCopy(g_sdl.renderer, g_sdl.texture, NULL, NULL);
     SDL_RenderPresent(g_sdl.renderer);
+}
+
+void				render_in_range(int x, int y, int x_max, int y_max)
+{
+# pragma clang loop vectorize(enable) unroll(full) distribute(enable)
+	while (y < y_max)
+	{
+		x = 0;
+		while (x < x_max)
+		{
+			set_pixel(trace(g_rays[y * wh + x], g_eye.lcs.o), x, y);
+			++x;
+		}
+		++y;
+	}
+}
+
+void				*thread_entry_point(void *arg)
+{
+	int i;
+
+	i = *((int*)arg);
+	free(arg);
+	render_in_range(0, i * render_pitch, ww, (i + 1) * render_pitch);
+	++g_work_amount;
+	pthread_mutex_lock(&g_general_mutex);
+	pthread_cond_signal(&g_work_done);
+	pthread_mutex_unlock(&g_general_mutex);
+	pthread_exit(0);
+}
+
+static inline void	custom_attr_init(pthread_attr_t *attr)
+{
+	pthread_attr_init(attr);
+	pthread_attr_setdetachstate(attr,PTHREAD_CREATE_DETACHED);
+	pthread_attr_setschedpolicy(attr, SCHED_FIFO);
+	pthread_attr_setguardsize(attr, 8192);
+	pthread_attr_setscope(attr, PTHREAD_SCOPE_SYSTEM);
+}
+
+void				pic_render(void)
+{
+	int				i;
+	int				*i_p;
+	pthread_attr_t	thread_atrr;
+
+	i = 0;
+	custom_attr_init(&thread_atrr);
+# pragma clang loop vectorize(enable) unroll(full) distribute(enable)
+	while (i < thread_num)
+	{
+		i_p = malloc(sizeof(int));
+		*i_p = i;
+		pthread_create(&g_treads[i], &thread_atrr, thread_entry_point, i_p);
+		++i;
+	}
+	pthread_mutex_lock(&g_general_mutex);
+	while (g_work_amount != thread_num)
+		pthread_cond_wait(&g_work_done, &g_general_mutex);
+	pthread_mutex_unlock(&g_general_mutex);
+	update_picture();
 }

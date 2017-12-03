@@ -25,6 +25,8 @@ t_ray	get_ray(register const uint32_t x_, register const uint32_t y_)
 	x = (t_double3){sx * tan(FOV), sx * tan(FOV), sx *tan(FOV)};
 	y = (t_double3){sy * tan(FOV), sy * tan(FOV), sy * tan(FOV)};
 	impl_p = g_eye.lcs.o + g_eye.lcs.u + x * g_eye.lcs.v + y * g_eye.lcs.n;
+	impl_p[0] += 0.00166666666;
+	impl_p[1] += 0.00166666666;
 	return (norm(impl_p - g_eye.lcs.o));
 }
 
@@ -34,6 +36,7 @@ void	set_prime_rays(void)
 	register uint16_t	y;
 
 	y = 0;
+# pragma clang loop vectorize(enable) unroll(full) distribute(enable)
 	while (y < wh)
 	{
 		x = 0;
@@ -51,7 +54,7 @@ void	set_eye(t_double3 origin, t_double3 dir, t_double3 up)
 	t_cs	ecs;
 
 	ecs.o = origin;
-	ecs.u = norm(dir - origin);
+	ecs.u = norm(norm(dir) - norm(origin));
 	ecs.v = norm(cross(up, ecs.u));
 	ecs.n = norm(cross(ecs.u, ecs.v));
 	g_eye.lcs = ecs;
@@ -65,5 +68,8 @@ void	set_eye(t_double3 origin, t_double3 dir, t_double3 up)
 void	setup(void)
 {
 	init_sdl("rtv1");
-	set_eye((t_double3){0.0, 0.0, 2000.0}, (t_double3){0.0, 0.0, 1.0}, (t_double3){0.0, 1.0, 0.0});
+	set_eye((t_double3){210.0, 210.0, 210.0},
+			(t_double3){-1.0, -1.0, -1.0},
+			(t_double3){0.0, -1.0, 0.0});
+	setup_color();
 }

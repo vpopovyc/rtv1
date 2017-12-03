@@ -19,6 +19,6 @@ typedef	t_double3	t_ray;
 
 // # endif
 
-int		sphere_inter(t_ray ray, struct s_object self);
+double		sphere_inter(t_ray ray, t_double3 ray_o, t_object *sphere);
 
 #endif

@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   set_pixel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpopovyc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/01 19:57:08 by vpopovyc          #+#    #+#             */
-/*   Updated: 2017/11/01 19:57:10 by vpopovyc         ###   ########.fr       */
+/*   Created: 2017/11/19 18:50:27 by vpopovyc          #+#    #+#             */
+/*   Updated: 2017/11/19 18:50:29 by vpopovyc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../headers/sdl2.h"
 #include "../headers/core.h"
 
-int		main(void)
+inline void	set_pixel(int color, int x, int y)
 {
-	setup();
-	pic_render();
-	handle_command();
-	return (0);
+	g_sdl.pixels[y * wh + x] = color;
 }
