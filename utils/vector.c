@@ -31,6 +31,17 @@ inline	t_double3	vec(t_double4 x)
 	return ((t_double3){x[0], x[1], x[2]});
 }
 
+inline	t_double3	vec3(double _x)
+{
+	return ((t_double3){_x, _x, _x});
+}
+
+inline	double		len(t_double3 p)
+{
+	p *= p;
+	return (sqrt(p[0] + p[1] + p[2]));
+}
+
 /*
 ** Cross Product
 ** (ax, ay, az) x (bx, by, bz)
@@ -55,6 +66,17 @@ inline	t_double3	vabs(t_double3 x)
 	x[0] = x[0] < 0.0 ? 0.0 : x[0];
 	x[1] = x[1] < 0.0 ? 0.0 : x[1];
 	x[2] = x[2] < 0.0 ? 0.0 : x[2];
+	return (x);
+}
+
+inline	t_double3	vabsmod(t_double3 x)
+{
+	x[0] = x[0] < 0.0 ? 0.0 : x[0];
+	x[1] = x[1] < 0.0 ? 0.0 : x[1];
+	x[2] = x[2] < 0.0 ? 0.0 : x[2];
+	x[0] = x[0] > 1.0 ? 1.0 : x[0];
+	x[1] = x[1] > 1.0 ? 1.0 : x[1];
+	x[2] = x[2] > 1.0 ? 1.0 : x[2];
 	return (x);
 }
 

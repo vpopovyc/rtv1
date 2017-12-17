@@ -21,4 +21,8 @@ typedef	t_double3	t_ray;
 
 double		sphere_inter(t_ray ray, t_double3 ray_o, t_object *sphere);
 
+double 		cylinder_inter(t_ray ray, t_double3 ray_o, t_object *cylinder);
+
+double 		plane_inter(t_ray ray, t_double3 ray_o, t_object *plane);
+
 #endif

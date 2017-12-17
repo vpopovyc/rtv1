@@ -14,9 +14,9 @@
 
 inline	void	update_raw(t_color *color)
 {
-	(*color).r = ((*color).unit.r > 1.0 ? 1.0 : (*color).unit.r ) * 255;
-	(*color).g = ((*color).unit.g > 1.0 ? 1.0 : (*color).unit.g ) * 255;
-	(*color).b = ((*color).unit.b > 1.0 ? 1.0 : (*color).unit.b ) * 255;
+	(*color).r = ((*color).unit.r > 1.0 ? 1.0 : (*color).unit.r) * 255;
+	(*color).g = ((*color).unit.g > 1.0 ? 1.0 : (*color).unit.g) * 255;
+	(*color).b = ((*color).unit.b > 1.0 ? 1.0 : (*color).unit.b) * 255;
 }
 
 inline	void	update_unit(t_color *color)

@@ -42,6 +42,22 @@ t_hit_point	closest_intersection(t_ray ray, t_double3 ray_o)
 	return ((t_hit_point){was_hit, obj_idx, point(ray_o, ray, t_min)});
 }
 
+_Bool	point_is_illuminated(t_ray light, t_double3 light_o)
+{
+	t_ray		norm_light;
+	t_hit_point	hp;
+
+	norm_light = norm(light);
+	hp = closest_intersection(norm_light, light_o);
+	if (hp.was_hit)
+	{
+		if (len(hp.int_point - light_o) > len(light)) // if obstacle is further than light point
+			return(1);
+		return (0);
+	}
+	return (1);
+}
+
 int		color_local(t_hit_point p)
 {
 	t_color		color;
@@ -49,22 +65,25 @@ int		color_local(t_hit_point p)
 	t_double3	diff_c;
 	t_double3	spec_c;
 	int			i;
+	double 		work;
 
 	i = 0;
+	work = 1.0;
 	am_c = ambient(p.i);
 	diff_c = zero_vec;
 	spec_c = zero_vec;
 #pragma clang loop vectorize(enable) unroll(full) distribute(enable)
 	while (i < LNUM) // Loop by light sources
 	{
-		if (closest_intersection(norm(g_light[i].lcs.o - p.int_point), p.int_point).was_hit == no_hit) // Check for obstacles
+		// use geometry mean
+		if (point_is_illuminated(g_light[i].lcs.o - p.int_point, p.int_point))
 		{
 			diff_c += diffuse(p, i);
 			spec_c += specular(p, i);
 		}
 		++i;
 	}
-	color.unit.rgb = vabs(am_c + diff_c + spec_c) * g_obj[p.i].prop.color.unit.rgb; // Get final color
+	color.unit.rgb = (spec_c + diff_c + am_c) * g_obj[p.i].prop.color.unit.rgb; // Get final color
 	update_raw(&color);
 	color.a = 0;
 	return(color.rgba);

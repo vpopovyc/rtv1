@@ -23,11 +23,14 @@
 
 extern	t_double3	cross(t_double3 a, t_double3 b)	__attribute__((always_inline));
 extern	t_double3	vabs(t_double3 x) __attribute__((always_inline));
+extern	t_double3	vabsmod(t_double3 x) __attribute__((always_inline));
 extern 	double		dot(t_double3 x1, t_double3 x2) __attribute__((always_inline));
 extern	t_double3	dot3(t_double3 x1, t_double3 x2) __attribute__((always_inline));
 extern 	t_double3	vec(t_double4 x) __attribute__((always_inline));
+extern 	t_double3	vec3(double _x) __attribute__((always_inline));
 extern	t_double3	norm(t_double3 x) __attribute__((always_inline));
 extern	t_double3	point(t_double3 p, t_double3 v, double t) __attribute__((always_inline));
+extern	double 		len(t_double3 p) __attribute__((always_inline));
 
 /*
 ** utils/quaternion.c

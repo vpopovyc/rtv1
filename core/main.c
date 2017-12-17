@@ -11,9 +11,11 @@
 /* ************************************************************************** */
 
 #include "../headers/core.h"
+#include <time.h>
 
 int		main(void)
 {
+
 	setup();
 	pic_render();
 	handle_command();

@@ -15,4 +15,8 @@
 
 t_ray	sphere_normal(t_double3 point, t_object *sphere);
 
+t_ray	cylinder_normal(t_double3 point, t_object *sphere);
+
+t_ray	plane_normal(t_double3 point, t_object *plane);
+
 #endif

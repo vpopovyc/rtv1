@@ -32,14 +32,19 @@ typedef	enum		e_globals
 	ww = 600,
 	was_hit = 1, 
 	no_hit = 0,
-	bg_color = 0x42424200,
+
+	bg_color = 0xffffff00,
+	// bg_color = 0x80808000,
+	// bg_color = 0x42424200,
 	thread_num = 8,
 	render_pitch = wh / thread_num
 }					t_globals;
 
-# define OBJNUM		(1)
+# define OBJNUM		(9)
 
-# define LNUM		(3)
+# define LNUM		(1)
+
+# define PRESC_ERR	(1e-6)
 
 
 /*

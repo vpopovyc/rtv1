@@ -33,14 +33,14 @@ void	handle_command(void)
 	    */
 	    if (keystate[SDL_SCANCODE_A])
 	    {
-	    	g_obj[0].prop.color.rgba = 0x00008200;
-	    	update_unit(&g_obj[0].prop.color);
+	    	g_obj[1].prop.color.rgba = 0x00008200;
+	    	update_unit(&g_obj[1].prop.color);
 	    	update_view();
 	    }
 	    if (keystate[SDL_SCANCODE_S])
 	    {
-	    	g_obj[0].prop.color.rgba = 0x00820000;
-	    	update_unit(&g_obj[0].prop.color);
+	    	g_obj[1].prop.color.rgba = 0x00820000;
+	    	update_unit(&g_obj[1].prop.color);
 	    	update_view();
 	    }
 	    if (keystate[SDL_SCANCODE_D])
