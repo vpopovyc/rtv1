@@ -22,7 +22,7 @@ t_ray	get_ray(register const uint32_t x_, register const uint32_t y_)
 
 	sx = ((double)x_ / (ww - 1)) * 2.0 - 1.0;
 	sy = ((double)y_ / (wh - 1)) * 2.0 - 1.0;
-	x = (t_double3){sx * tan(FOV), sx * tan(FOV), sx *tan(FOV)};
+	x = (t_double3){sx * tan(FOV), sx * tan(FOV), sx * tan(FOV)};
 	y = (t_double3){sy * tan(FOV), sy * tan(FOV), sy * tan(FOV)};
 	impl_p = g_eye.lcs.o + g_eye.lcs.u + x * g_eye.lcs.v + y * g_eye.lcs.n;
 	impl_p[0] += 0.00166666666;
@@ -68,7 +68,7 @@ void	set_eye(t_double3 origin, t_double3 dir, t_double3 up)
 void	setup(void)
 {
 	init_sdl("rtv1");
-	set_eye((t_double3){610.0, 510.0, 910.0},
+	set_eye((t_double3){610.0, 510.0, 610.0},
 			(t_double3){-1.0, -1.0, -2.0},
 			(t_double3){0.0, -1.0, 0.0});
 	setup_color();

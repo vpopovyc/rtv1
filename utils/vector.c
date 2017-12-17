@@ -42,6 +42,18 @@ inline	double		len(t_double3 p)
 	return (sqrt(p[0] + p[1] + p[2]));
 }
 
+inline	double 		theta(t_double3 a, t_double3 b)
+{
+	t_double3 len_a;
+	t_double3 len_b;
+	double 	dot_ab;
+
+	len_a = vec3(len(a));
+	len_b = vec3(len(b));
+	dot_ab = dot(len_a, len_b);
+	return (dot_ab / (len_a[0] * len_b[0]));
+}
+
 /*
 ** Cross Product
 ** (ax, ay, az) x (bx, by, bz)

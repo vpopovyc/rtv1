@@ -25,10 +25,11 @@ typedef	enum	e_obj_type
 typedef	struct	s_data
 {
 	t_color		color;
-	double		radius;
 	t_double3	diffuse;
 	t_double3	ambient;
 	t_double3	specular;
+	double		radius;
+	double 		a_theta;
 }				t_data;
 
 typedef	struct	s_object	t_object;

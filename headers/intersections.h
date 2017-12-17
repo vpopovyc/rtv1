@@ -25,4 +25,6 @@ double 		cylinder_inter(t_ray ray, t_double3 ray_o, t_object *cylinder);
 
 double 		plane_inter(t_ray ray, t_double3 ray_o, t_object *plane);
 
+double 		cone_inter(t_ray, t_double3 ray_o, t_object *cone);
+
 #endif

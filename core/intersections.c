@@ -12,6 +12,9 @@
 
 #include "../headers/core.h"
 
+static __thread double	g_cos;
+static __thread double	g_sin;
+
 static double		quadratic(double a, double b, double c)
 {
 	double	sqd;
@@ -59,6 +62,31 @@ double				cylinder_inter(t_ray ray, t_double3 ray_o, t_object *cylin)
 				dot(sqa, sqa),
 				2.0 * dot(sqa, pr),
 				dot(pr, pr) - (cylin->prop.radius * cylin->prop.radius)
+				)
+			);
+}
+
+double 				cone_inter(t_ray ray, t_double3 ray_o, t_object *cone)
+{
+	t_ray	dist;
+	t_ray	sqa;
+	t_ray	pr;
+	double 	side1;
+	double	side2;
+
+	dist = ray_o - cone->lcs.o;
+	side1 = dot(ray, cone->lcs.v);
+	side2 = dot(dist, cone->lcs.v);
+	sqa = ray - ((t_double3){side1, side1, side1} * cone->lcs.v);
+	pr = dist - ((t_double3){side2, side2, side2} * cone->lcs.v);
+	g_cos = cos(cone->prop.a_theta);
+	g_sin = sin(cone->prop.a_theta);
+	g_cos *= g_cos;
+	g_sin *= g_sin;
+	return (quadratic(
+				g_cos * dot(sqa, sqa) - g_sin * (side1 * side1),
+				2.0 * g_cos * dot(sqa, pr) - 2.0 * g_sin * (side1 * side2),
+				g_cos * dot(pr, pr) - g_sin * (side2 * side2)
 				)
 			);
 }
