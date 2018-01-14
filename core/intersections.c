@@ -77,8 +77,8 @@ double				cone_inter(t_ray ray, t_double3 ray_o, t_object *cone)
 	dist = ray_o - cone->lcs.o;
 	side1 = dot(ray, cone->lcs.v);
 	side2 = dot(dist, cone->lcs.v);
-	sqa = ray - ((t_double3){side1, side1, side1} * cone->lcs.v);
-	pr = dist - ((t_double3){side2, side2, side2} * cone->lcs.v);
+	sqa = ray - scale(cone->lcs.v, side1);
+	pr = dist - scale(cone->lcs.v, side2);
 	g_cos = cos(cone->prop.a_theta);
 	g_sin = sin(cone->prop.a_theta);
 	g_cos *= g_cos;

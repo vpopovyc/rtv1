@@ -12,7 +12,7 @@
 
 #include "../headers/core.h"
 
-static const t_double3	g_am = (t_double3){1., 1., 1.};
+static const t_double3	g_am = (t_double3){0.42, 0.42, 0.42};
 static const t_double3	g_const2 = (t_double3){2.0, 2.0, 2.0};
 static const double 	g_ph_spec = 90.0;
 
