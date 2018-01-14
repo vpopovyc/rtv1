@@ -15,6 +15,7 @@
 static inline void	update_view(void)
 {
 	g_work_amount = 0;
+	set_prime_rays();
 	pic_render();
 }
 
@@ -31,22 +32,76 @@ void	handle_command(void)
 	    /*
 	    ** TBD
 	    */
-	    if (keystate[SDL_SCANCODE_A])
+	    if (keystate[SDL_SCANCODE_W])
 	    {
-	    	g_obj[1].prop.color.rgba = 0x00008200;
-	    	update_unit(&g_obj[1].prop.color);
+	    	printf("forward\n");
+	    	g_eye.lcs.o += scale(g_eye.lcs.u, 50.0);
 	    	update_view();
 	    }
 	    if (keystate[SDL_SCANCODE_S])
 	    {
-	    	g_obj[1].prop.color.rgba = 0x00820000;
-	    	update_unit(&g_obj[1].prop.color);
+	    	printf("backward\n");
+	    	g_eye.lcs.o -= scale(g_eye.lcs.u, 50.0);
 	    	update_view();
 	    }
 	    if (keystate[SDL_SCANCODE_D])
 	    {
-	    	g_obj[0].prop.color.rgba = 0x82000000;
-	    	update_unit(&g_obj[0].prop.color);
+	    	printf("right\n");
+	    	g_eye.lcs.o += scale(norm(cross(g_eye.lcs.n, g_eye.lcs.u)), 50.0);
+	    	update_view();
+	    }
+	    if (keystate[SDL_SCANCODE_A])
+	    {
+	    	printf("left\n");
+	    	g_eye.lcs.o -= scale(norm(cross(g_eye.lcs.n, g_eye.lcs.u)), 50.0);
+	    	update_view();
+	    }
+	    if (keystate[SDL_SCANCODE_H])
+	    {
+	    	printf("rot left\n");
+	    	t_cs tmp;
+
+	    	tmp = g_eye.lcs;
+	    	tmp.u = qrot(vec3quat(g_eye.lcs.u), quat(g_eye.lcs.n, -5.0));
+	    	tmp.v = qrot(vec3quat(g_eye.lcs.v), quat(g_eye.lcs.n, -5.0));
+	    	tmp.n = qrot(vec3quat(g_eye.lcs.n), quat(g_eye.lcs.n, -5.0));
+	    	g_eye.lcs = tmp;
+	    	update_view();
+	    }
+	    if (keystate[SDL_SCANCODE_L])
+	    {
+	    	printf("rot right\n");
+	    	t_cs tmp;
+
+	    	tmp = g_eye.lcs;
+	    	tmp.u = qrot(vec3quat(g_eye.lcs.u), quat(g_eye.lcs.n, 5.0));
+	    	tmp.v = qrot(vec3quat(g_eye.lcs.v), quat(g_eye.lcs.n, 5.0));
+	    	tmp.n = qrot(vec3quat(g_eye.lcs.n), quat(g_eye.lcs.n, 5.0));
+	    	g_eye.lcs = tmp;
+	    	update_view();
+	    }
+	    if (keystate[SDL_SCANCODE_J])
+	    {
+	    	printf("rot up\n");
+	    	t_cs tmp;
+
+	    	tmp = g_eye.lcs;
+	    	tmp.u = qrot(vec3quat(g_eye.lcs.u), quat(g_eye.lcs.v, 5.0));
+	    	tmp.v = qrot(vec3quat(g_eye.lcs.v), quat(g_eye.lcs.v, 5.0));
+	    	tmp.n = qrot(vec3quat(g_eye.lcs.n), quat(g_eye.lcs.v, 5.0));
+	    	g_eye.lcs = tmp;
+	    	update_view();
+	    }
+	    if (keystate[SDL_SCANCODE_K])
+	    {
+	    	printf("rot down\n");
+	    	t_cs tmp;
+
+	    	tmp = g_eye.lcs;
+	    	tmp.u = qrot(vec3quat(g_eye.lcs.u), quat(g_eye.lcs.v, -5.0));
+	    	tmp.v = qrot(vec3quat(g_eye.lcs.v), quat(g_eye.lcs.v, -5.0));
+	    	tmp.n = qrot(vec3quat(g_eye.lcs.n), quat(g_eye.lcs.v, -5.0));
+	    	g_eye.lcs = tmp;
 	    	update_view();
 	    }
 	    /*

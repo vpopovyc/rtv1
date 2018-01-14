@@ -54,8 +54,8 @@ void	set_eye(t_double3 origin, t_double3 dir, t_double3 up)
 	t_cs	ecs;
 
 	ecs.o = origin;
-	ecs.u = norm(norm(dir) - norm(origin));
-	ecs.v = norm(cross(up, ecs.u));
+	ecs.u = norm(norm(dir) - origin);
+	ecs.v = norm(cross(norm(up), ecs.u));
 	ecs.n = norm(cross(ecs.u, ecs.v));
 	g_eye.lcs = ecs;
 	vec_print("Eye:\n\to:", g_eye.lcs.o);

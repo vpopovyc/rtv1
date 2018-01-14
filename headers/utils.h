@@ -22,6 +22,7 @@
 # define vec_print(s, x) (printf("%s x: %.16f y: %.16f z: %.16f\n", s, (x)[0], (x)[1], (x)[2]))
 
 extern	t_double3	cross(t_double3 a, t_double3 b)	__attribute__((always_inline));
+extern	t_double3	scale(const t_double3 x, const double scale) __attribute__((always_inline));
 extern	t_double3	vabs(t_double3 x) __attribute__((always_inline));
 extern	t_double3	vabsmod(t_double3 x) __attribute__((always_inline));
 extern 	double		dot(t_double3 x1, t_double3 x2) __attribute__((always_inline));
@@ -41,6 +42,7 @@ extern	double 		theta(t_double3 a, t_double3 b) __attribute__((always_inline));
 
 # define PI_180		(0.0174532925)
 
+extern  t_double4 	vec3quat(const t_double3 x) __attribute__((always_inline));
 extern	t_double4	quat(const t_double3 x, const double angle) __attribute__((always_inline));
 extern	t_double4	qmul(const t_double4 x, const t_double4 n) __attribute__((always_inline));
 extern	t_double4	qinv(const t_double4 x) __attribute__((always_inline));

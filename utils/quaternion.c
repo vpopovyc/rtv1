@@ -26,6 +26,11 @@ inline	t_double4	quat(const t_double3 x, const double angle)
 						cos(angle * 0.5 * PI_180)});
 }
 
+inline	t_double4 	vec3quat(const t_double3 x)
+{
+	return ((t_double4){x[0], x[1], x[2], 0.0});
+}
+
 /*
 ** Quaternion mul block calculates the product for 2 given quaternions
 ** ** qi' = aw * bi + ai * bw + aj * bk - ak * bj
@@ -36,11 +41,11 @@ inline	t_double4	quat(const t_double3 x, const double angle)
 
 inline	t_double4	qmul(const t_double4 a, const t_double4 b)
 {
-	return (qnp((t_double4){
+	return ((t_double4){
 					a[3] * b[0] + a[0] * b[3] + a[1] * b[2] - a[2] * b[1],
 					a[3] * b[1] - a[0] * b[2] + a[1] * b[3] + a[2] * b[0],
 					a[3] * b[2] + a[0] * b[1] - a[1] * b[0] + a[2] * b[3],
-					a[3] * b[3] - a[0] * b[0] - a[1] * b[1] - a[2] * b[2]}));
+					a[3] * b[3] - a[0] * b[0] - a[1] * b[1] - a[2] * b[2]});
 }
 
 /*
@@ -50,10 +55,7 @@ inline	t_double4	qmul(const t_double4 a, const t_double4 b)
 
 inline	t_double4	qconjugate(const t_double4 x)
 {
-	return ((t_double4){(-x[0] == -0.0) ? 0.0 : -x[0],
-						(-x[1] == -0.0) ? 0.0 : -x[1],
-						(-x[2] == -0.0) ? 0.0 : -x[2],
-						x[3]});
+	return ((t_double4){-x[0], -x[1], -x[2], x[3]});
 }
 
 /*
@@ -89,32 +91,5 @@ inline	t_double4	qinv(const t_double4 x)
 
 inline	t_double3	qrot(const t_double4 x, const t_double4 n)
 {
-	return (vec(qmul(qmul(n, x), qinv(n))));
-}
-
-/*
-** Round to 8 digit in double, to avoid unexpected sh#t like -0.000000005385
-*/
-
-inline	double		qround(double x) {
-    return (round(x * 100000000.0) / 100000000.0);
-}
-
-/*
-** C99 has macros for the classification of floating-point numbers:
-** fpclassify(x) returns one of:
-** ** FP_NAN: 		x == nan
-** ** FP_INFINITE: 	x == +inf || x == -inf
-** ** FP_ZERO: 		x == 0.0
-** ** FP_NORMAL: 	x == ok
-*/
-
-inline	t_double4	qnp(t_double4 x)
-{
-	x = (t_double4){qround(x[0]), qround(x[1]), qround(x[2]), qround(x[3])};
-	(fpclassify(x[0]) != FP_NORMAL || x[0] == -0.0) ? x[0] = 0.0 : 0;
-	(fpclassify(x[1]) != FP_NORMAL || x[1] == -0.0) ? x[1] = 0.0 : 0;
-	(fpclassify(x[2]) != FP_NORMAL || x[2] == -0.0) ? x[2] = 0.0 : 0;
-	(fpclassify(x[3]) != FP_NORMAL || x[3] == -0.0) ? x[3] = 0.0 : 0;
-	return (x);
+	return (norm(vec(qmul(qmul(n, x), qinv(n)))));
 }

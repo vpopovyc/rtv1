@@ -90,6 +90,7 @@ extern	t_light		g_light[];
 */
 
 void				setup(void);
+void				set_prime_rays(void);
 
 /*
 ** Render a shit
