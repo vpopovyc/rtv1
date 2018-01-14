@@ -33,8 +33,8 @@ t_ray	cone_normal(t_double3 point, t_object *cone)
 	t_double3	theta3;
 
 	dist = point - cone->lcs.o;
-	theta3 = vec3(theta(dist, cone->lcs.v));
-	return (norm(cross(cross(dist, (norm(theta3 * cone->lcs.v)) - dist), dist)));
+	theta3 = vec3(theta(dist, cone->lcs.v)) * cone->lcs.v;
+	return (-norm(cross(cross(dist, theta3 - dist), dist)));
 }
 
 t_ray	plane_normal(t_double3 point, t_object *plane)

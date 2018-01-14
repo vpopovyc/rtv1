@@ -50,7 +50,7 @@ inline	double 		theta(t_double3 a, t_double3 b)
 
 	len_a = vec3(len(a));
 	len_b = vec3(len(b));
-	dot_ab = dot(len_a, len_b);
+	dot_ab = dot(a, b);
 	return (dot_ab / (len_a[0] * len_b[0]));
 }
 

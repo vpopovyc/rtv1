@@ -68,8 +68,8 @@ void	set_eye(t_double3 origin, t_double3 dir, t_double3 up)
 void	setup(void)
 {
 	init_sdl("rtv1");
-	set_eye((t_double3){610.0, 510.0, 610.0},
-			(t_double3){-1.0, -1.0, -2.0},
+	set_eye((t_double3){1610.0, 1610.0, 1610.0},
+			(t_double3){-1.0, -1.0, -1.0},
 			(t_double3){0.0, -1.0, 0.0});
 	setup_color();
 }

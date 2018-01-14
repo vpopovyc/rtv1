@@ -40,7 +40,7 @@ typedef	enum		e_globals
 	render_pitch = wh / thread_num
 }					t_globals;
 
-# define OBJNUM		(1)
+# define OBJNUM		(17)
 
 # define LNUM		(1)
 
