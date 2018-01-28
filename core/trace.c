@@ -12,9 +12,9 @@
 
 #include "../headers/core.h"
 
-static const t_double3	zero_vec = (t_double3){0.0, 0.0, 0.0};
-static __thread t_double3 diff_part[LNUM];
-static __thread t_double3 spec_part[LNUM];
+static const t_double3		g_zero_vec = (t_double3){0.0, 0.0, 0.0};
+static __thread t_double3	g_diff_part[LNUM];
+static __thread t_double3	g_spec_part[LNUM];
 
 t_hit_point	closest_intersection(t_ray ray, t_double3 ray_o)
 {
@@ -29,7 +29,6 @@ t_hit_point	closest_intersection(t_ray ray, t_double3 ray_o)
 	t_min = -1.0;
 	obj_idx = -1;
 	was_hit = 0;
-#pragma clang loop vectorize(enable) unroll(full) distribute(enable)
 	while (i < OBJNUM)
 	{
 		t = g_obj[i].intersect_me(ray, ray_o, &g_obj[i]);
@@ -44,7 +43,7 @@ t_hit_point	closest_intersection(t_ray ray, t_double3 ray_o)
 	return ((t_hit_point){was_hit, obj_idx, point(ray_o, ray, t_min)});
 }
 
-_Bool	point_is_illuminated(t_ray light, t_double3 light_o)
+_Bool		point_is_illuminated(t_ray light, t_double3 light_o)
 {
 	t_ray		norm_light;
 	t_hit_point	hp;
@@ -53,8 +52,8 @@ _Bool	point_is_illuminated(t_ray light, t_double3 light_o)
 	hp = closest_intersection(norm_light, light_o);
 	if (hp.was_hit)
 	{
-		if (len(hp.int_point - light_o) > len(light)) // if obstacle is further than light point
-			return(1);
+		if (len(hp.int_point - light_o) > len(light))
+			return (1);
 		return (0);
 	}
 	return (1);
@@ -62,49 +61,51 @@ _Bool	point_is_illuminated(t_ray light, t_double3 light_o)
 
 t_double3	point_illum(void)
 {
-	t_double3 diff;
-	t_double3 spec;
-	int i;
+	t_double3	diff;
+	t_double3	spec;
+	int			i;
 
 	i = 0;
-	diff = zero_vec;
-	spec = zero_vec;
+	diff = g_zero_vec;
+	spec = g_zero_vec;
 	while (i < LNUM)
 	{
-		diff += (diff_part[i] * diff_part[i]);
-		spec += (spec_part[i] * spec_part[i]);
-		diff_part[i] = zero_vec;
-		spec_part[i] = zero_vec;
+		diff += (g_diff_part[i] * g_diff_part[i]);
+		spec += (g_spec_part[i] * g_spec_part[i]);
+		g_diff_part[i] = g_zero_vec;
+		g_spec_part[i] = g_zero_vec;
 		++i;
 	}
-	diff = (t_double3){pow(diff[0], 1.0 / LNUM), pow(diff[1], 1.0 / LNUM), pow(diff[2], 1.0 / LNUM)};
-	spec = (t_double3){pow(spec[0], 1.0 / LNUM), pow(spec[1], 1.0 / LNUM), pow(spec[2], 1.0 / LNUM)};
+	diff = (t_double3){pow(diff[0], 1.0 / LNUM), pow(diff[1], 1.0 / LNUM),
+		pow(diff[2], 1.0 / LNUM)};
+	spec = (t_double3){pow(spec[0], 1.0 / LNUM), pow(spec[1], 1.0 / LNUM),
+		pow(spec[2], 1.0 / LNUM)};
 	return (vabsmod(spec + diff));
 }
 
-int		color_local(t_hit_point p)
+int			color_local(t_hit_point p)
 {
 	int			i;
 	t_color		color;
 
 	i = 0;
-#pragma clang loop vectorize(enable) unroll(full) distribute(enable)
 	while (i < LNUM)
 	{
 		if (point_is_illuminated(g_light[i].lcs.o - p.int_point, p.int_point))
 		{
-			diff_part[i] = diffuse(p, i);
-			spec_part[i] = specular(p, i);
+			g_diff_part[i] = diffuse(p, i);
+			g_spec_part[i] = specular(p, i);
 		}
 		++i;
 	}
-	color.unit.rgb = (point_illum() + ambient(p.i)) * g_obj[p.i].prop.color.unit.rgb; // Get final color
+	color.unit.rgb = (point_illum() + ambient(p.i))
+	* g_obj[p.i].prop.color.unit.rgb;
 	update_raw(&color);
 	color.a = 0;
-	return(color.rgba);
+	return (color.rgba);
 }
 
-int 	trace(t_ray ray, t_double3 ray_o, int *obj_i)
+int			trace(t_ray ray, t_double3 ray_o, int *obj_i)
 {
 	t_hit_point	p;
 

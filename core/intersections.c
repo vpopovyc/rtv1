@@ -19,8 +19,8 @@ static double		quadratic(double a, double b, double c)
 {
 	double	sqd;
 	double	d;
-	double 	t1;
-	double 	t2;
+	double	t1;
+	double	t2;
 
 	sqd = (b * b) - (4.0 * a * c);
 	if (sqd < PRESC_ERR)
@@ -44,9 +44,7 @@ double				sphere_inter(t_ray ray, t_double3 ray_o, t_object *sphere)
 	return (quadratic(
 				dot(ray, ray),
 				2.0 * dot(ray, dist),
-				dot(dist, dist) - (sphere->prop.radius * sphere->prop.radius)
-				)
-			);
+				dot(dist, dist) - (sphere->prop.radius * sphere->prop.radius)));
 }
 
 double				cylinder_inter(t_ray ray, t_double3 ray_o, t_object *cylin)
@@ -57,13 +55,11 @@ double				cylinder_inter(t_ray ray, t_double3 ray_o, t_object *cylin)
 
 	dist = ray_o - cylin->lcs.o;
 	sqa = ray - (dot3(ray, cylin->lcs.v) * cylin->lcs.v);
-	pr = dist - (dot3(dist, cylin->lcs.v) * cylin->lcs.v);	
+	pr = dist - (dot3(dist, cylin->lcs.v) * cylin->lcs.v);
 	return (quadratic(
 				dot(sqa, sqa),
 				2.0 * dot(sqa, pr),
-				dot(pr, pr) - (cylin->prop.radius * cylin->prop.radius)
-				)
-			);
+				dot(pr, pr) - (cylin->prop.radius * cylin->prop.radius)));
 }
 
 double				cone_inter(t_ray ray, t_double3 ray_o, t_object *cone)
@@ -71,7 +67,7 @@ double				cone_inter(t_ray ray, t_double3 ray_o, t_object *cone)
 	t_ray	dist;
 	t_ray	sqa;
 	t_ray	pr;
-	double 	side1;
+	double	side1;
 	double	side2;
 
 	dist = ray_o - cone->lcs.o;
@@ -86,14 +82,12 @@ double				cone_inter(t_ray ray, t_double3 ray_o, t_object *cone)
 	return (quadratic(
 				g_cos * dot(sqa, sqa) - g_sin * (side1 * side1),
 				2.0 * g_cos * dot(sqa, pr) - 2.0 * g_sin * (side1 * side2),
-				g_cos * dot(pr, pr) - g_sin * (side2 * side2)
-				)
-			);
+				g_cos * dot(pr, pr) - g_sin * (side2 * side2)));
 }
 
 double				plane_inter(t_ray ray, t_double3 ray_o, t_object *plane)
 {
-	double 	t;
+	double	t;
 	double	denominator;
 
 	t = -1.0;
@@ -106,4 +100,3 @@ double				plane_inter(t_ray ray, t_double3 ray_o, t_object *plane)
 	}
 	return (-1.0);
 }
-

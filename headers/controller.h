@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   controller.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpopovyc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/01 19:57:08 by vpopovyc          #+#    #+#             */
-/*   Updated: 2017/11/01 19:57:10 by vpopovyc         ###   ########.fr       */
+/*   Created: 2018/01/28 17:17:07 by vpopovyc          #+#    #+#             */
+/*   Updated: 2018/01/28 17:17:08 by vpopovyc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/core.h"
+#ifndef __CONTROLLER_H
+# define __CONTROLLER_H
 
-int		main(void)
-{
-	setup();
-	pic_render();
-	handle_command();
-	return (0);
-}
+# include "core.h"
+# include <stdbool.h>
+
+void	update_view(void);
+void	move_eye(t_ray dir);
+void	rotate_eye(t_ray axis, double angle);
+void	rotate_object(int obj_i, t_ray axis, double angle);
+void	move_object(int obj_i, t_ray dir);
+
+extern _Bool g_key_pressed;
+
+#endif

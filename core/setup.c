@@ -36,7 +36,6 @@ void	set_prime_rays(void)
 	register uint16_t	y;
 
 	y = 0;
-# pragma clang loop vectorize(enable) unroll(full) distribute(enable)
 	while (y < wh)
 	{
 		x = 0;
@@ -58,10 +57,6 @@ void	set_eye(t_double3 origin, t_double3 dir, t_double3 up)
 	ecs.v = norm(cross(norm(up), ecs.u));
 	ecs.n = norm(cross(ecs.u, ecs.v));
 	g_eye.lcs = ecs;
-	vec_print("Eye:\n\to:", g_eye.lcs.o);
-	vec_print("\tu:", g_eye.lcs.u);
-	vec_print("\tv:", g_eye.lcs.v);
-	vec_print("\tn:", g_eye.lcs.n);
 	set_prime_rays();
 }
 

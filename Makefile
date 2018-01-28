@@ -13,7 +13,8 @@
 EXEC = rtv1
 
 CORE = core/main.c core/setup.c core/handle_command.c core/intersections.c \
-		core/pic_render.c core/normals.c core/phong.c core/trace.c
+		core/pic_render.c core/normals.c core/phong.c core/trace.c \
+		core/controller.c
 UTILS = utils/vector.c utils/quaternion.c utils/color.c utils/quaternion_ext.c \
 		utils/vector_ext_one.c utils/vector_ext_two.c
 SDL2 = sdl2/init.c sdl2/set_pixel.c
