@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// This is shit, should be reworked 
-
 #include "../headers/utils.h"
 
 /*
@@ -26,7 +24,7 @@ inline	t_double4	quat(const t_double3 x, const double angle)
 						cos(angle * 0.5 * PI_180)});
 }
 
-inline	t_double4 	vec3quat(const t_double3 x)
+inline	t_double4	vec3quat(const t_double3 x)
 {
 	return ((t_double4){x[0], x[1], x[2], 0.0});
 }
@@ -67,29 +65,4 @@ inline	double		qnorm(t_double4 x)
 {
 	x *= x;
 	return (x[0] + x[1] + x[2] + x[3]);
-}
-
-/*
-** Determines identity quaternion(element)
-** ** q' = conjugate(q) / norm(q)
-*/
-
-inline	t_double4	qinv(const t_double4 x)
-{
-	t_double4	c;
-	double		n;	
-
-	c = qconjugate(x);
-	n = qnorm(x);
-	return ((t_double4){c[0] / n, c[1] / n, c[2] / n, c[3] / n});
-}
-
-/*
-** Rotates unit vector around another unit vector on defined angle
-** ** new_v = q * old_v * q^-1 
-*/
-
-inline	t_double3	qrot(const t_double4 x, const t_double4 n)
-{
-	return (norm(vec(qmul(qmul(n, x), qinv(n)))));
 }

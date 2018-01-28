@@ -21,9 +21,9 @@ inline	void	update_raw(t_color *color)
 
 inline	void	update_unit(t_color *color)
 {
-	(*color).unit.r	= (double)(*color).r / 255;
-	(*color).unit.g	= (double)(*color).g / 255;
-	(*color).unit.b	= (double)(*color).b / 255;
+	(*color).unit.r = (double)(*color).r / 255;
+	(*color).unit.g = (double)(*color).g / 255;
+	(*color).unit.b = (double)(*color).b / 255;
 }
 
 inline	void	setup_color(void)
