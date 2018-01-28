@@ -11,8 +11,10 @@
 /* ************************************************************************** */
 
 #ifndef __GET_NEXT_LINE_H
-# define __GET_NEXT_LINE_H 
+# define __GET_NEXT_LINE_H
+
 # include "libft.h"
+
 # define BUFF_SIZE 512
 
 typedef struct		s_gnl
@@ -25,4 +27,5 @@ typedef struct		s_gnl
 	struct s_gnl	*next;
 }					t_gnl;
 int					get_next_line(const int fd, char **line);
+
 #endif
