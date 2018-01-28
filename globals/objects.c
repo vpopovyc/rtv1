@@ -13,7 +13,7 @@
 #include "../headers/core.h"
 
 /*
-** TBD
+** Beware of overflows
 */
 
 t_object	g_obj[OBJNUM] =
@@ -21,7 +21,9 @@ t_object	g_obj[OBJNUM] =
 	{
 		.lcs = {
 			.o = (t_double3){0.0, 0.0, 0.0},
-			.n = (t_double3){0.0, 0.0, -1.0}
+			.n = (t_double3){0.0, 0.0, -1.0},
+			.u = (t_double3){1.0, 0.0, 0.0},
+			.v = (t_double3){0.0, 1.0, 0.0}
 		},
 		.prop = {
 			.color = {
@@ -37,7 +39,9 @@ t_object	g_obj[OBJNUM] =
 	{
 		.lcs = {
 			.o = (t_double3){0.0, 0.0, 0.0},
-			.n = (t_double3){0.0, -1.0, 0.0}
+			.n = (t_double3){0.0, -1.0, 0.0},
+			.u = (t_double3){1.0, 0.0, 0.0},
+			.v = (t_double3){0.0, 0.0, 1.0}
 		},
 		.prop = {
 			.color = {
@@ -53,7 +57,9 @@ t_object	g_obj[OBJNUM] =
 		{
 		.lcs = {
 			.o = (t_double3){0.0, 0.0, 0.0},
-			.n = (t_double3){-1.0, 0.0, 0.0}
+			.n = (t_double3){-1.0, 0.0, 0.0},
+			.u = (t_double3){0.0, 0.0, 1.0},
+			.v = (t_double3){0.0, 1.0, 0.0}
 		},
 		.prop = {
 			.color = {
@@ -69,6 +75,9 @@ t_object	g_obj[OBJNUM] =
 	{
 		.lcs = {
 			.o = (t_double3){600.0, 600.0, 600.0},
+			.n = (t_double3){1.0, 0.0, 0.0},
+			.u = (t_double3){0.0, 0.0, 1.0},
+			.v = (t_double3){0.0, 1.0, 0.0},
 		},
 		.prop = {
 			.color = {
@@ -85,7 +94,9 @@ t_object	g_obj[OBJNUM] =
 	{
 		.lcs = {
 			.o = (t_double3){500.0, 0.0, 270.0},
-			.v = (t_double3){0.0, 1.0, 0.0}
+			.v = (t_double3){0.0, 1.0, 0.0},
+			.u = (t_double3){0.0, 0.0, 1.0},
+			.n = (t_double3){1.0, 0.0, 0.0}
 		},
 		.prop = {
 			.color = {
@@ -102,7 +113,9 @@ t_object	g_obj[OBJNUM] =
 	{
 		.lcs = {
 			.o = (t_double3){270.0, 0.0, 500.0},
-			.v = (t_double3){0.0, 1.0, 0.0}
+			.v = (t_double3){0.0, 1.0, 0.0},
+			.u = (t_double3){0.0, 0.0, 1.0},
+			.n = (t_double3){1.0, 0.0, 0.0}
 		},
 		.prop = {
 			.color = {
@@ -118,7 +131,10 @@ t_object	g_obj[OBJNUM] =
 	},
 	{
 		.lcs = {
-			.o = (t_double3){270.0, 0.0, 500.0}
+			.o = (t_double3){270.0, 0.0, 500.0},
+			.n = (t_double3){1.0, 0.0, 0.0},
+			.u = (t_double3){0.0, 0.0, 1.0},
+			.v = (t_double3){0.0, 1.0, 0.0}
 		},
 		.prop = {
 			.color = {
@@ -135,6 +151,9 @@ t_object	g_obj[OBJNUM] =
 	{
 		.lcs = {
 			.o = (t_double3){500.0, 0.0, 270.0},
+			.n = (t_double3){1.0, 0.0, 0.0},
+			.u = (t_double3){0.0, 0.0, 1.0},
+			.v = (t_double3){0.0, 1.0, 0.0}
 		},
 		.prop = {
 			.color = {
@@ -151,7 +170,9 @@ t_object	g_obj[OBJNUM] =
 	{
 		.lcs = {
 			.o = (t_double3){800.0, 0.0, 270.0},
-			.v = (t_double3){0.0, 1.0, 0.0}
+			.v = (t_double3){0.0, 1.0, 0.0},
+			.u = (t_double3){0.0, 0.0, 1.0},
+			.n = (t_double3){1.0, 0.0, 0.0}
 		},
 		.prop = {
 			.color = {
@@ -168,7 +189,9 @@ t_object	g_obj[OBJNUM] =
 	{
 		.lcs = {
 			.o = (t_double3){270.0, 0.0, 800.0},
-			.v = (t_double3){0.0, 1.0, 0.0}
+			.v = (t_double3){0.0, 1.0, 0.0},
+			.u = (t_double3){0.0, 0.0, 1.0},
+			.n = (t_double3){1.0, 0.0, 0.0}
 		},
 		.prop = {
 			.color = {
@@ -184,7 +207,10 @@ t_object	g_obj[OBJNUM] =
 	},
 	{
 		.lcs = {
-			.o = (t_double3){270.0, 0.0, 800.0}
+			.o = (t_double3){270.0, 0.0, 800.0},
+			.n = (t_double3){1.0, 0.0, 0.0},
+			.u = (t_double3){0.0, 0.0, 1.0},
+			.v = (t_double3){0.0, 1.0, 0.0}
 		},
 		.prop = {
 			.color = {
@@ -201,6 +227,9 @@ t_object	g_obj[OBJNUM] =
 	{
 		.lcs = {
 			.o = (t_double3){800.0, 0.0, 270.0},
+			.n = (t_double3){1.0, 0.0, 0.0},
+			.u = (t_double3){0.0, 0.0, 1.0},
+			.v = (t_double3){0.0, 1.0, 0.0}
 		},
 		.prop = {
 			.color = {
@@ -217,7 +246,9 @@ t_object	g_obj[OBJNUM] =
 	{
 		.lcs = {
 			.o = (t_double3){1000.0, 0.0, 270.0},
-			.v = (t_double3){0.0, 1.0, 0.0}
+			.v = (t_double3){0.0, 1.0, 0.0},
+			.u = (t_double3){0.0, 0.0, 1.0},
+			.n = (t_double3){1.0, 0.0, 0.0}
 		},
 		.prop = {
 			.color = {
@@ -234,7 +265,9 @@ t_object	g_obj[OBJNUM] =
 	{
 		.lcs = {
 			.o = (t_double3){270.0, 0.0, 1000.0},
-			.v = (t_double3){0.0, 1.0, 0.0}
+			.v = (t_double3){0.0, 1.0, 0.0},
+			.u = (t_double3){0.0, 0.0, 1.0},
+			.n = (t_double3){1.0, 0.0, 0.0}
 		},
 		.prop = {
 			.color = {
@@ -250,7 +283,10 @@ t_object	g_obj[OBJNUM] =
 	},
 	{
 		.lcs = {
-			.o = (t_double3){270.0, 0.0, 1000.0}
+			.o = (t_double3){270.0, 0.0, 1000.0},
+			.n = (t_double3){1.0, 0.0, 0.0},
+			.u = (t_double3){0.0, 0.0, 1.0},
+			.v = (t_double3){0.0, 1.0, 0.0}
 		},
 		.prop = {
 			.color = {
@@ -267,6 +303,9 @@ t_object	g_obj[OBJNUM] =
 	{
 		.lcs = {
 			.o = (t_double3){1000.0, 0.0, 270.0},
+			.n = (t_double3){1.0, 0.0, 0.0},
+			.u = (t_double3){0.0, 0.0, 1.0},
+			.v = (t_double3){0.0, 1.0, 0.0}
 		},
 		.prop = {
 			.color = {
@@ -283,7 +322,9 @@ t_object	g_obj[OBJNUM] =
 	{
 		.lcs = {
 			.o = (t_double3){600.0, 600.0, 600.0},
-			.v = (t_double3){0.0, 1.0, 0.0}
+			.v = (t_double3){0.0, 1.0, 0.0},
+			.u = (t_double3){0.0, 0.0, 1.0},
+			.n = (t_double3){1.0, 0.0, 0.0}
 		},
 		.prop = {
 			.color = {
@@ -297,535 +338,4 @@ t_object	g_obj[OBJNUM] =
 		.intersect_me = cone_inter,
 		.normal = cone_normal
 	},
-	// {
-	// 	.lcs = {
-	// 		.o = (t_double3){100.0, 100.0, 400.0},
-	// 		.v = (t_double3){1.0, 0.0, 0.0}
-	// 	},
-	// 	.prop = {
-	// 		.color = {
-	// 			.rgba = 0xf8d74900
-	// 		},
-	// 		.radius = 14.0,
-	// 		.diffuse = (t_double3){0.3, 0.3, 0.3},
-	// 		.ambient = (t_double3){0.5, 0.5, 0.5},
-	// 		.specular = (t_double3){0.9, 0.9, 0.9}
-	// 	},
-	// 	.intersect_me = cylinder_inter,
-	// 	.normal = cylinder_normal
-	// },
-	// {
-	// 	.lcs = {
-	// 		.o = (t_double3){420.0, 0.0, 200.0},
-	// 		.v = (t_double3){0.0, 1.0, 0.0}
-	// 	},
-	// 	.prop = {
-	// 		.color = {
-	// 			.rgba = 0xe7614e00
-	// 		},
-	// 		.radius = 30.0,
-	// 		.diffuse = (t_double3){0.3, 0.3, 0.3},
-	// 		.ambient = (t_double3){0.5, 0.5, 0.5},
-	// 		.specular = (t_double3){0.9, 0.9, 0.9}
-	// 	},
-	// 	.intersect_me = cylinder_inter,
-	// 	.normal = cylinder_normal
-	// },
-	// {
-	// 	.lcs = {
-	// 		.o = (t_double3){0.0, 0.0, 0.0},
-	// 		.n = (t_double3){-1.0, 0.0, 0.0}
-	// 	},
-	// 	.prop = {
-	// 		.color = {
-	// 			.rgba = 0xacacac00
-	// 		},
-	// 		.diffuse = (t_double3){0.7, 0.7, 0.7},
-	// 		.ambient = (t_double3){0.7, 0.7, 0.7},
-	// 		.specular = (t_double3){0.5, 0.5, 0.5}
-	// 	},
-	// 	.intersect_me = plane_inter,
-	// 	.normal = plane_normal
-	// },
-	// {
-	// 	.lcs = {
-	// 		.o = (t_double3){0.0, 0.0, -250.0},
-	// 		.n = (t_double3){0.0, 0.0, -1.0}
-	// 	},
-	// 	.prop = {
-	// 		.color = {
-	// 			.rgba = 0x77c3cf00
-	// 		},
-	// 		.diffuse = (t_double3){0.8, 0.8, 0.8},
-	// 		.ambient = (t_double3){0.7, 0.7, 0.7},
-	// 		.specular = (t_double3){0.2, 0.2, 0.2}
-	// 	},
-	// 	.intersect_me = plane_inter,
-	// 	.normal = plane_normal
-	// },
-	// {
-	// 	.lcs = {
-	// 		.o = (t_double3){0.0, -200.0, 0.0},
-	// 		.n = (t_double3){0.0, -1.0, 0.0}
-	// 	},
-	// 	.prop = {
-	// 		.color = {
-	// 			.rgba = 0xd3b3eb00
-	// 		},
-	// 		.diffuse = (t_double3){0.8, 0.8, 0.8},
-	// 		.ambient = (t_double3){0.7, 0.7, 0.7},
-	// 		.specular = (t_double3){0.2, 0.2, 0.2}
-	// 	},
-	// 	.intersect_me = plane_inter,
-	// 	.normal = plane_normal
-	// },
-	// {
-	// 	.lcs = {
-	// 		.o = (t_double3){100.0, 0.0, 0.0},
-	// 		.v = (t_double3){0.0, 1.0, 0.0}
-	// 	},
-	// 	.prop = {
-	// 		.color = {
-	// 			.rgba = 0x4447A400
-	// 		},
-	// 		.a_theta = (11.5 * PI_180),
-	// 		.diffuse = (t_double3){0.1, 0.1, 0.1},
-	// 		.ambient = (t_double3){0.7, 0.7, 0.7},
-	// 		.specular = (t_double3){0.9, 0.9, 0.9}
-	// 	},
-	// 	.intersect_me = cone_inter,
-	// 	.normal = cone_normal
-	// },
-	// {
-	// 	.lcs = {
-	// 		.o = (t_double3){0.0, 0.0, 0.0},
-	// 		.v = (t_double3){0.0, 0.0, 1.0}
-	// 	},
-	// 	.prop = {
-	// 		.color = {
-	// 			.rgba = 0x82020200
-	// 		},
-	// 		.radius = 5.0,
-	// 		.diffuse = (t_double3){0.3, 0.3, 0.3},
-	// 		.ambient = (t_double3){0.5, 0.5, 0.5},
-	// 		.specular = (t_double3){0.9, 0.9, 0.9}
-	// 	},
-	// 	.intersect_me = cylinder_inter,
-	// 	.normal = cylinder_normal
-	// },
-	// {
-	// 	.lcs = {
-	// 		.o = (t_double3){0.0, 0.0, 0.0},
-	// 		.v = (t_double3){0.0, 1.0, 0.0}
-	// 	},
-	// 	.prop = {
-	// 		.color = {
-	// 			.rgba = 0x02820200
-	// 		},
-	// 		.radius = 5.0,
-	// 		.diffuse = (t_double3){0.3, 0.3, 0.3},
-	// 		.ambient = (t_double3){0.5, 0.5, 0.5},
-	// 		.specular = (t_double3){0.9, 0.9, 0.9}
-	// 	},
-	// 	.intersect_me = cylinder_inter,
-	// 	.normal = cylinder_normal
-	// },
-	// {
-	// 	.lcs = {
-	// 		.o = (t_double3){0.0, 0.0, 0.0},
-	// 		.v = (t_double3){1.0, 0.0, 0.0}
-	// 	},
-	// 	.prop = {
-	// 		.color = {
-	// 			.rgba = 0x02028200
-	// 		},
-	// 		.radius = 5.0,
-	// 		.diffuse = (t_double3){0.3, 0.3, 0.3},
-	// 		.ambient = (t_double3){0.5, 0.5, 0.5},
-	// 		.specular = (t_double3){0.9, 0.9, 0.9}
-	// 	},
-	// 	.intersect_me = cylinder_inter,
-	// 	.normal = cylinder_normal
-	// }
-
-	// {
-	// 	.lcs = {
-	// 		.o = (t_double3){-25.0, 0.0, 0.0},
-	// 		.u = (t_double3){1.0, 0.0, 0.0},
-	// 		.v = (t_double3){0.0, 1.0, 0.0},
-	// 		.n = (t_double3){0.0, 0.0, 1.0}
-	// 	},
-	// 	.prop = {
-	// 		.color = {
-	// 			.rgba = 0x82020200
-	// 		},
-	// 		.radius = 5.5,
-	// 		.diffuse = (t_double3){0.3, 0.3, 0.3},
-	// 		.ambient = (t_double3){0.5, 0.5, 0.5},
-	// 		.specular = (t_double3){0.9, 0.9, 0.9}
-	// 	},
-	// 	.intersect_me = sphere_inter,
-	// 	.normal = sphere_normal
-	// },
-	// {
-	// 	.lcs = {
-	// 		.o = (t_double3){-50.0, 0.0, 0.0},
-	// 		.u = (t_double3){1.0, 0.0, 0.0},
-	// 		.v = (t_double3){0.0, 1.0, 0.0},
-	// 		.n = (t_double3){0.0, 0.0, 1.0}
-	// 	},
-	// 	.prop = {
-	// 		.color = {
-	// 			.rgba = 0x82020200
-	// 		},
-	// 		.radius = 6.0,
-	// 		.diffuse = (t_double3){0.3, 0.3, 0.3},
-	// 		.ambient = (t_double3){0.5, 0.5, 0.5},
-	// 		.specular = (t_double3){0.9, 0.9, 0.9}
-	// 	},
-	// 	.intersect_me = sphere_inter,
-	// 	.normal = sphere_normal
-	// },
-	// {
-	// 	.lcs = {
-	// 		.o = (t_double3){-75.0, 0.0, 0.0},
-	// 		.u = (t_double3){1.0, 0.0, 0.0},
-	// 		.v = (t_double3){0.0, 1.0, 0.0},
-	// 		.n = (t_double3){0.0, 0.0, 1.0}
-	// 	},
-	// 	.prop = {
-	// 		.color = {
-	// 			.rgba = 0x82020200
-	// 		},
-	// 		.radius = 7.0,
-	// 		.diffuse = (t_double3){0.3, 0.3, 0.3},
-	// 		.ambient = (t_double3){0.5, 0.5, 0.5},
-	// 		.specular = (t_double3){0.9, 0.9, 0.9}
-	// 	},
-	// 	.intersect_me = sphere_inter,
-	// 	.normal = sphere_normal
-	// },
-	// {
-	// 	.lcs = {
-	// 		.o = (t_double3){-100.0, 0.0, 0.0},
-	// 		.u = (t_double3){1.0, 0.0, 0.0},
-	// 		.v = (t_double3){0.0, 1.0, 0.0},
-	// 		.n = (t_double3){0.0, 0.0, 1.0}
-	// 	},
-	// 	.prop = {
-	// 		.radius = 8.0,
-	// 		.color = {
-	// 			.rgba = 0x82020200
-	// 		},
-	// 		.diffuse = (t_double3){0.1, 0.1, 0.1},
-	// 		.ambient = (t_double3){0.7, 0.7, 0.7},
-	// 		.specular = (t_double3){0.9, 0.9, 0.9}
-	// 	},
-	// 	.intersect_me = sphere_inter,
-	// 	.normal = sphere_normal
-	// },
-	// {
-	// 	.lcs = {
-	// 		.o = (t_double3){0.0, 100.0, 0.0},
-	// 		.u = (t_double3){1.0, 0.0, 0.0},
-	// 		.v = (t_double3){0.0, 1.0, 0.0},
-	// 		.n = (t_double3){0.0, 0.0, 1.0}
-	// 	},
-	// 	.prop = {
-	// 		.radius = 2.0,
-	// 		.color = {
-	// 			.rgba = 0xfca3af00
-	// 		},
-	// 		.diffuse = (t_double3){0.1, 0.1, 0.1},
-	// 		.ambient = (t_double3){0.7, 0.7, 0.7},
-	// 		.specular = (t_double3){0.9, 0.9, 0.9}
-	// 	},
-	// 	.intersect_me = sphere_inter,
-	// 	.normal = sphere_normal
-	// },
-	// {
-	// 	.lcs = {
-	// 		.o = (t_double3){0.0, 75.0, 0.0},
-	// 		.u = (t_double3){1.0, 0.0, 0.0},
-	// 		.v = (t_double3){0.0, 1.0, 0.0},
-	// 		.n = (t_double3){0.0, 0.0, 1.0}
-	// 	},
-	// 	.prop = {
-	// 		.radius = 3.0,
-	// 		.color = {
-	// 			.rgba = 0xfca3af00
-	// 		},
-	// 		.diffuse = (t_double3){0.1, 0.1, 0.1},
-	// 		.ambient = (t_double3){0.7, 0.7, 0.7},
-	// 		.specular = (t_double3){0.9, 0.9, 0.9}
-	// 	},
-	// 	.intersect_me = sphere_inter,
-	// 	.normal = sphere_normal
-	// },
-	// {
-	// 	.lcs = {
-	// 		.o = (t_double3){0.0, 50.0, 0.0},
-	// 		.u = (t_double3){1.0, 0.0, 0.0},
-	// 		.v = (t_double3){0.0, 1.0, 0.0},
-	// 		.n = (t_double3){0.0, 0.0, 1.0}
-	// 	},
-	// 	.prop = {
-	// 		.radius = 4.0,
-	// 		.color = {
-	// 			.rgba = 0xfca3af00
-	// 		},
-	// 		.diffuse = (t_double3){0.1, 0.1, 0.1},
-	// 		.ambient = (t_double3){0.7, 0.7, 0.7},
-	// 		.specular = (t_double3){0.9, 0.9, 0.9}
-	// 	},
-	// 	.intersect_me = sphere_inter,
-	// 	.normal = sphere_normal
-	// },
-	// {
-	// 	.lcs = {
-	// 		.o = (t_double3){0.0, 25.0, 0.0},
-	// 		.u = (t_double3){1.0, 0.0, 0.0},
-	// 		.v = (t_double3){0.0, 1.0, 0.0},
-	// 		.n = (t_double3){0.0, 0.0, 1.0}
-	// 	},
-	// 	.prop = {
-	// 		.radius = 4.5,
-	// 		.color = {
-	// 			.rgba = 0xfca3af00
-	// 		},
-	// 		.diffuse = (t_double3){0.1, 0.1, 0.1},
-	// 		.ambient = (t_double3){0.7, 0.7, 0.7},
-	// 		.specular = (t_double3){0.9, 0.9, 0.9}
-	// 	},
-	// 	.intersect_me = sphere_inter,
-	// 	.normal = sphere_normal
-	// },
-	// {
-	// 	.lcs = {
-	// 		.o = (t_double3){0.0, -25.0, 0.0},
-	// 		.u = (t_double3){1.0, 0.0, 0.0},
-	// 		.v = (t_double3){0.0, 1.0, 0.0},
-	// 		.n = (t_double3){0.0, 0.0, 1.0}
-	// 	},
-	// 	.prop = {
-	// 		.radius = 5.5,
-	// 		.color = {
-	// 			.rgba = 0xfca3af00
-	// 		},
-	// 		.diffuse = (t_double3){0.1, 0.1, 0.1},
-	// 		.ambient = (t_double3){0.7, 0.7, 0.7},
-	// 		.specular = (t_double3){0.9, 0.9, 0.9}
-	// 	},
-	// 	.intersect_me = sphere_inter,
-	// 	.normal = sphere_normal
-	// },
-	// {
-	// 	.lcs = {
-	// 		.o = (t_double3){0.0, -50.0, 0.0},
-	// 		.u = (t_double3){1.0, 0.0, 0.0},
-	// 		.v = (t_double3){0.0, 1.0, 0.0},
-	// 		.n = (t_double3){0.0, 0.0, 1.0}
-	// 	},
-	// 	.prop = {
-	// 		.radius = 6.0,
-	// 		.color = {
-	// 			.rgba = 0xfca3af00
-	// 		},
-	// 		.diffuse = (t_double3){0.1, 0.1, 0.1},
-	// 		.ambient = (t_double3){0.7, 0.7, 0.7},
-	// 		.specular = (t_double3){0.9, 0.9, 0.9}
-	// 	},
-	// 	.intersect_me = sphere_inter,
-	// 	.normal = sphere_normal
-	// },
-	// {
-	// 	.lcs = {
-	// 		.o = (t_double3){0.0, -75.0, 0.0},
-	// 		.u = (t_double3){1.0, 0.0, 0.0},
-	// 		.v = (t_double3){0.0, 1.0, 0.0},
-	// 		.n = (t_double3){0.0, 0.0, 1.0}
-	// 	},
-	// 	.prop = {
-	// 		.radius = 7.0,
-	// 		.color = {
-	// 			.rgba = 0xfca3af00
-	// 		},
-	// 		.diffuse = (t_double3){0.1, 0.1, 0.1},
-	// 		.ambient = (t_double3){0.7, 0.7, 0.7},
-	// 		.specular = (t_double3){0.9, 0.9, 0.9}
-	// 	},
-	// 	.intersect_me = sphere_inter,
-	// 	.normal = sphere_normal
-	// },
-	// {
-	// 	.lcs = {
-	// 		.o = (t_double3){0.0, -100.0, 0.0},
-	// 		.u = (t_double3){1.0, 0.0, 0.0},
-	// 		.v = (t_double3){0.0, 1.0, 0.0},
-	// 		.n = (t_double3){0.0, 0.0, 1.0}
-	// 	},
-	// 	.prop = {
-	// 		.radius = 8.0,
-	// 		.color = {
-	// 			.rgba = 0xfca3af00
-	// 		},
-	// 		.diffuse = (t_double3){0.1, 0.1, 0.1},
-	// 		.ambient = (t_double3){0.7, 0.7, 0.7},
-	// 		.specular = (t_double3){0.9, 0.9, 0.9}
-	// 	},
-	// 	.intersect_me = sphere_inter,
-	// 	.normal = sphere_normal
-	// },
-	// {
-	// 	.lcs = {
-	// 		.o = (t_double3){0.0, 0.0, 100.0},
-	// 		.u = (t_double3){1.0, 0.0, 0.0},
-	// 		.v = (t_double3){0.0, 1.0, 0.0},
-	// 		.n = (t_double3){0.0, 0.0, 1.0}
-	// 	},
-	// 	.prop = {
-	// 		.radius = 2.0,
-	// 		.color = {
-	// 			.rgba = 0x02028200
-	// 		},
-	// 		.diffuse = (t_double3){0.1, 0.1, 0.1},
-	// 		.ambient = (t_double3){0.7, 0.7, 0.7},
-	// 		.specular = (t_double3){0.9, 0.9, 0.9}
-	// 	},
-	// 	.intersect_me = sphere_inter,
-	// 	.normal = sphere_normal
-	// },
-	// {
-	// 	.lcs = {
-	// 		.o = (t_double3){0.0, 0.0, 75.0},
-	// 		.u = (t_double3){1.0, 0.0, 0.0},
-	// 		.v = (t_double3){0.0, 1.0, 0.0},
-	// 		.n = (t_double3){0.0, 0.0, 1.0}
-	// 	},
-	// 	.prop = {
-	// 		.radius = 3.0,
-	// 		.color = {
-	// 			.rgba = 0x02028200
-	// 		},
-	// 		.diffuse = (t_double3){0.1, 0.1, 0.1},
-	// 		.ambient = (t_double3){0.7, 0.7, 0.7},
-	// 		.specular = (t_double3){0.9, 0.9, 0.9}
-	// 	},
-	// 	.intersect_me = sphere_inter,
-	// 	.normal = sphere_normal
-	// },
-	// {
-	// 	.lcs = {
-	// 		.o = (t_double3){0.0, 0.0, 50.0},
-	// 		.u = (t_double3){1.0, 0.0, 0.0},
-	// 		.v = (t_double3){0.0, 1.0, 0.0},
-	// 		.n = (t_double3){0.0, 0.0, 1.0}
-	// 	},
-	// 	.prop = {
-	// 		.radius = 4.0,
-	// 		.color = {
-	// 			.rgba = 0x02028200
-	// 		},
-	// 		.diffuse = (t_double3){0.1, 0.1, 0.1},
-	// 		.ambient = (t_double3){0.7, 0.7, 0.7},
-	// 		.specular = (t_double3){0.9, 0.9, 0.9}
-	// 	},
-	// 	.intersect_me = sphere_inter,
-	// 	.normal = sphere_normal
-	// },
-	// {
-	// 	.lcs = {
-	// 		.o = (t_double3){0.0, 0.0, 25.0},
-	// 		.u = (t_double3){1.0, 0.0, 0.0},
-	// 		.v = (t_double3){0.0, 1.0, 0.0},
-	// 		.n = (t_double3){0.0, 0.0, 1.0}
-	// 	},
-	// 	.prop = {
-	// 		.radius = 4.5,
-	// 		.color = {
-	// 			.rgba = 0x02028200
-	// 		},
-	// 		.diffuse = (t_double3){0.1, 0.1, 0.1},
-	// 		.ambient = (t_double3){0.7, 0.7, 0.7},
-	// 		.specular = (t_double3){0.9, 0.9, 0.9}
-	// 	},
-	// 	.intersect_me = sphere_inter,
-	// 	.normal = sphere_normal
-	// },
-	// {
-	// 	.lcs = {
-	// 		.o = (t_double3){0.0, 0.0, -25.0},
-	// 		.u = (t_double3){1.0, 0.0, 0.0},
-	// 		.v = (t_double3){0.0, 1.0, 0.0},
-	// 		.n = (t_double3){0.0, 0.0, 1.0}
-	// 	},
-	// 	.prop = {
-	// 		.radius = 5.5,
-	// 		.color = {
-	// 			.rgba = 0x02028200
-	// 		},
-	// 		.diffuse = (t_double3){0.1, 0.1, 0.1},
-	// 		.ambient = (t_double3){0.7, 0.7, 0.7},
-	// 		.specular = (t_double3){0.9, 0.9, 0.9}
-	// 	},
-	// 	.intersect_me = sphere_inter,
-	// 	.normal = sphere_normal
-	// },
-	// {
-	// 	.lcs = {
-	// 		.o = (t_double3){0.0, 0.0, -50.0},
-	// 		.u = (t_double3){1.0, 0.0, 0.0},
-	// 		.v = (t_double3){0.0, 1.0, 0.0},
-	// 		.n = (t_double3){0.0, 0.0, 1.0}
-	// 	},
-	// 	.prop = {
-	// 		.radius = 6.0,
-	// 		.color = {
-	// 			.rgba = 0x02028200
-	// 		},
-	// 		.diffuse = (t_double3){0.1, 0.1, 0.1},
-	// 		.ambient = (t_double3){0.7, 0.7, 0.7},
-	// 		.specular = (t_double3){0.9, 0.9, 0.9}
-	// 	},
-	// 	.intersect_me = sphere_inter,
-	// 	.normal = sphere_normal
-	// },
-	// {
-	// 	.lcs = {
-	// 		.o = (t_double3){0.0, 0.0, -75.0},
-	// 		.u = (t_double3){1.0, 0.0, 0.0},
-	// 		.v = (t_double3){0.0, 1.0, 0.0},
-	// 		.n = (t_double3){0.0, 0.0, 1.0}
-	// 	},
-	// 	.prop = {
-	// 		.radius = 7.0,
-	// 		.color = {
-	// 			.rgba = 0x02028200
-	// 		},
-	// 		.diffuse = (t_double3){0.1, 0.1, 0.1},
-	// 		.ambient = (t_double3){0.7, 0.7, 0.7},
-	// 		.specular = (t_double3){0.9, 0.9, 0.9}
-	// 	},
-	// 	.intersect_me = sphere_inter,
-	// 	.normal = sphere_normal
-	// },
-	// {
-	// 	.lcs = {
-	// 		.o = (t_double3){0.0, 0.0, -100.0},
-	// 		.u = (t_double3){1.0, 0.0, 0.0},
-	// 		.v = (t_double3){0.0, 1.0, 0.0},
-	// 		.n = (t_double3){0.0, 0.0, 1.0}
-	// 	},
-	// 	.prop = {
-	// 		.radius = 8.0,
-	// 		.color = {
-	// 			.rgba = 0x02028200
-	// 		},
-	// 		.diffuse = (t_double3){0.1, 0.1, 0.1},
-	// 		.ambient = (t_double3){0.7, 0.7, 0.7},
-	// 		.specular = (t_double3){0.9, 0.9, 0.9}
-	// 	},
-	// 	.intersect_me = sphere_inter,
-	// 	.normal = sphere_normal
-	// }
 };

@@ -30,6 +30,7 @@ t_eye	g_eye;
 */
 
 t_ray	g_rays[ww * wh];
+int 	g_myobj[ww * wh];
 
 /*
 ** Light sources

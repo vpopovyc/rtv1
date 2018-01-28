@@ -41,10 +41,29 @@ static inline void	rotate_eye(t_ray axis, double angle)
 	key_pressed = true;
 }
 
+static inline void	rotate_object(int obj_i, t_ray axis, double angle)
+{
+	t_cs temp_obj_cs;
+
+	temp_obj_cs = g_obj[obj_i].lcs;
+	temp_obj_cs.u = qrot(vec3quat(g_obj[obj_i].lcs.u), quat(axis, angle));
+	temp_obj_cs.v = qrot(vec3quat(g_obj[obj_i].lcs.v), quat(axis, angle));
+	temp_obj_cs.n = qrot(vec3quat(g_obj[obj_i].lcs.n), quat(axis, angle));
+	g_obj[obj_i].lcs = temp_obj_cs;
+	key_pressed = true;
+}
+
+static inline void move_object(int obj_i, t_ray dir)
+{
+	g_obj[obj_i].lcs.o += scale(dir, 50.0);
+	key_pressed = true;
+}
+
 void	handle_command(void)
 {
 	uint8_t 	*keystate;
 
+	int i = -1;
 	while (1)
 	{	
 		keystate = (unsigned char *)SDL_GetKeyboardState(NULL);
@@ -54,6 +73,12 @@ void	handle_command(void)
 	    /*
 	    ** TBD
 	    */
+	    int x, y;
+	    SDL_PumpEvents();
+	    if (SDL_GetMouseState(&x, &y) & SDL_BUTTON(SDL_BUTTON_LEFT))
+	    {
+	    	i = g_myobj[y * wh + x];
+	    }
 	    if (keystate[SDL_SCANCODE_W])
 	    {
 	    	printf("forward\n");
@@ -93,6 +118,86 @@ void	handle_command(void)
 	    {
 	    	printf("rot down\n");
 	    	rotate_eye(g_eye.lcs.v, -5.0);
+	    }
+	    if (keystate[SDL_SCANCODE_B])
+	    {
+	    	if (i != -1)
+	    	{	    		
+		    	printf("obj_rot %d\n", i);
+		    	rotate_object(i, g_obj[i].lcs.v, 5.0);
+	    	}
+	    }
+	    if (keystate[SDL_SCANCODE_N])
+	    {
+	    	if (i != -1)
+	    	{	    		
+		    	printf("obj_rot %d\n", i);
+		    	rotate_object(i, g_obj[i].lcs.v, -5.0);
+	    	}
+	    }
+	    if (keystate[SDL_SCANCODE_C])
+	    {
+	    	if (i != -1)
+	    	{	    		
+		    	printf("obj_rot %d\n", i);
+		    	rotate_object(i, g_obj[i].lcs.u, 5.0);
+	    	}
+	    }
+	    if (keystate[SDL_SCANCODE_V])
+	    {
+	    	if (i != -1)
+	    	{	    		
+		    	printf("obj_rot %d\n", i);
+		    	rotate_object(i, g_obj[i].lcs.u, -5.0);
+	    	}
+	    }
+	    if (keystate[SDL_SCANCODE_Z])
+	    {
+	    	if (i != -1)
+	    	{	    		
+		    	printf("obj_rot %d\n", i);
+		    	rotate_object(i, g_obj[i].lcs.n, 5.0);
+	    	}
+	    }
+	    if (keystate[SDL_SCANCODE_X])
+	    {
+	    	if (i != -1)
+	    	{	    		
+		    	printf("obj_rot %d\n", i);
+		    	rotate_object(i, g_obj[i].lcs.n, -5.0);
+	    	}
+	    }
+	    if (keystate[SDL_SCANCODE_UP])
+	    {
+	    	if (i != -1)
+	    	{	    		
+		    	printf("obj_rot %d\n", i);
+		    	move_object(i, g_obj[i].lcs.n);
+		    }
+	    }
+	    if (keystate[SDL_SCANCODE_DOWN])
+	    {
+	    	if (i != -1)
+	    	{	    		
+		    	printf("obj_rot %d\n", i);
+		    	move_object(i, -g_obj[i].lcs.n);
+		    }
+	    }
+	    if (keystate[SDL_SCANCODE_LEFT])
+	    {
+	    	if (i != -1)
+	    	{	    		
+		    	printf("obj_rot %d\n", i);
+		    	move_object(i, g_obj[i].lcs.u);
+		    }
+	    }
+	    if (keystate[SDL_SCANCODE_RIGHT])
+	    {
+	    	if (i != -1)
+	    	{	    		
+		    	printf("obj_rot %d\n", i);
+		    	move_object(i, -g_obj[i].lcs.u);
+		    }
 	    }
 		if (key_pressed)    
 		{

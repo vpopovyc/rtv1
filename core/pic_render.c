@@ -32,7 +32,7 @@ void				render_in_range(int x, int y, int x_max, int y_max)
 		x = 0;
 		while (x < x_max)
 		{
-			set_pixel(trace(g_rays[y * wh + x], g_eye.lcs.o), x, y);
+			set_pixel(trace(g_rays[y * wh + x], g_eye.lcs.o, &g_myobj[y * wh + x]), x, y);
 			++x;
 		}
 		++y;

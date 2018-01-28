@@ -104,12 +104,12 @@ int		color_local(t_hit_point p)
 	return(color.rgba);
 }
 
-int 	trace(t_ray ray, t_double3 ray_o)
+int 	trace(t_ray ray, t_double3 ray_o, int *obj_i)
 {
 	t_hit_point	p;
 
 	p = closest_intersection(ray, ray_o);
-
+	*obj_i = p.i;
 	if (p.was_hit)
 	{
 		return (color_local(p));

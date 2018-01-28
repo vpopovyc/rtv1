@@ -14,7 +14,6 @@
 # define __CORE_H
 
 # include "../libft/libft.h"
-// # include "../headers/parse.h" **TBD**
 # include "vector_types.h"
 # include "color.h"
 # include "coord_system.h"
@@ -36,7 +35,7 @@ typedef	enum		e_globals
 	bg_color = 0xffffff00,
 	// bg_color = 0x80808000,
 	// bg_color = 0x42424200,
-	thread_num = 16,
+	thread_num = 8,
 	render_pitch = wh / thread_num
 }					t_globals;
 
@@ -71,6 +70,7 @@ extern	t_eye		g_eye;
 typedef	t_double3	t_ray;
 
 extern	t_ray		g_rays[];
+extern 	int 		g_myobj[];
 
 /*
 ** Light point
@@ -114,6 +114,6 @@ void				handle_command(void);
 ** Trace a ray from origin with given direction
 */
 
-int					trace(t_ray ray, t_double3 ray_o);
+int					trace(t_ray ray, t_double3 ray_o, int *obj_i);
 
 #endif
