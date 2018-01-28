@@ -31,7 +31,9 @@ typedef	struct		s_phong
 */
 
 extern t_double3	ambient(int i) __attribute__((always_inline));
-extern t_double3	diffuse(t_hit_point p, int i) __attribute__((always_inline));
-extern t_double3	specular(t_hit_point p, int i) __attribute__((always_inline));
+extern t_double3	diffuse(t_hit_point p,
+	int i) __attribute__((always_inline));
+extern t_double3	specular(t_hit_point p,
+	int i) __attribute__((always_inline));
 
 #endif

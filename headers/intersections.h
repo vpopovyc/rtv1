@@ -13,18 +13,14 @@
 #ifndef __INTERSECTIONS_H
 # define __INTERSECTIONS_H
 
-// # ifndef __RAY_PRE_DEF
-
 typedef	t_double3	t_ray;
-
-// # endif
 
 double		sphere_inter(t_ray ray, t_double3 ray_o, t_object *sphere);
 
-double 		cylinder_inter(t_ray ray, t_double3 ray_o, t_object *cylinder);
+double		cylinder_inter(t_ray ray, t_double3 ray_o, t_object *cylinder);
 
-double 		plane_inter(t_ray ray, t_double3 ray_o, t_object *plane);
+double		plane_inter(t_ray ray, t_double3 ray_o, t_object *plane);
 
-double 		cone_inter(t_ray, t_double3 ray_o, t_object *cone);
+double		cone_inter(t_ray ray, t_double3 ray_o, t_object *cone);
 
 #endif

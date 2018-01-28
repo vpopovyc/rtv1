@@ -29,12 +29,10 @@ typedef	enum		e_globals
 {
 	wh = 600,
 	ww = 600,
-	was_hit = 1, 
+	was_hit = 1,
 	no_hit = 0,
 
 	bg_color = 0xffffff00,
-	// bg_color = 0x80808000,
-	// bg_color = 0x42424200,
 	thread_num = 8,
 	render_pitch = wh / thread_num
 }					t_globals;
@@ -44,7 +42,6 @@ typedef	enum		e_globals
 # define LNUM		(2)
 
 # define PRESC_ERR	(1e-6)
-
 
 /*
 ** Work amount
@@ -70,7 +67,7 @@ extern	t_eye		g_eye;
 typedef	t_double3	t_ray;
 
 extern	t_ray		g_rays[];
-extern 	int 		g_myobj[];
+extern	int			g_myobj[];
 
 /*
 ** Light point

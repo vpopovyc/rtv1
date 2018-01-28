@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __COOR_SYSTEM_H
-# define __COOR_SYSTEM_H
+#ifndef __COORD_SYSTEM_H
+# define __COORD_SYSTEM_H
 
 /*
 ** Coordinate system

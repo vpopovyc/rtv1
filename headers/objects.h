@@ -10,39 +10,33 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #ifndef __OBJECTS_H
 # define __OBJECTS_H
 
-# define FOV (90/5 * PI_180)
+# define FOV 				(90 / 5 * PI_180)
 
-typedef	enum	e_obj_type
+typedef	struct				s_data
 {
-	sphere,
-	//TBD
-}				t_obj_type;
+	t_color					color;
+	t_double3				diffuse;
+	t_double3				ambient;
+	t_double3				specular;
+	double					radius;
+	double					a_theta;
+}							t_data;
 
-typedef	struct	s_data
+typedef	struct s_object		t_object;
+typedef	t_double3			t_ray;
+
+typedef	struct				s_object
 {
-	t_color		color;
-	t_double3	diffuse;
-	t_double3	ambient;
-	t_double3	specular;
-	double		radius;
-	double 		a_theta;
-}				t_data;
+	t_cs					lcs;
+	t_data					prop;
+	double					(*intersect_me)(t_ray ray, t_double3 ray_o,
+		t_object *self);
+	t_ray					(*normal)(t_double3 point, t_object *self);
+}							t_object;
 
-typedef	struct	s_object	t_object;
-typedef	t_double3	t_ray;
-
-typedef	struct	s_object
-{
-	t_cs		lcs;
-	t_data		prop;
-	double		(*intersect_me)(t_ray ray, t_double3 ray_o, t_object *self);
-	t_ray		(*normal)(t_double3 point, t_object *self);
-}				t_object;
-
-extern	t_object	g_obj[];
+extern	t_object			g_obj[];
 
 #endif
