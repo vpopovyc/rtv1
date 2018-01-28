@@ -30,13 +30,17 @@ t_eye	g_eye;
 */
 
 t_ray	g_rays[ww * wh];
-int 	g_myobj[ww * wh];
+
+/*
+** array of object indeces
+*/
+int		g_myobj[ww * wh];
 
 /*
 ** Light sources
 */
 
-t_light	g_light[LNUM] = 
+t_light	g_light[LNUM] =
 {
 	{
 		.lcs = {

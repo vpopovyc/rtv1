@@ -54,7 +54,7 @@ t_object	g_obj[OBJNUM] =
 		.intersect_me = plane_inter,
 		.normal = plane_normal
 	},
-		{
+	{
 		.lcs = {
 			.o = (t_double3){0.0, 0.0, 0.0},
 			.n = (t_double3){-1.0, 0.0, 0.0},
